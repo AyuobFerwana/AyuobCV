@@ -63,7 +63,7 @@ class UserController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Skill $skill)
+    public function edit(Skill $skills)
     {
         return response()->view('dashboard.edit', compact('skill'));
     }
