@@ -25,7 +25,7 @@ class UserController extends Controller
     public function create()
     {
         $skills = Skill::all();
-        return response()->view('dashboard.skills', compact('skills'));
+        return response()->view('dashboard.technicalSkills.creatskills', compact('skills'));
     }
 
     /**
@@ -63,40 +63,43 @@ class UserController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Skill $skills)
+    public function edit(Skill $user)
     {
-        return response()->view('dashboard.edit', compact('skill'));
+        return response()->view('dashboard.technicalSkills.edit', compact('user'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Skill $skills)
+    public function update(Request $request, $id)
     {
         $validator = Validator::make($request->all(), [
             'name' => 'required|string|min:3|max:50',
             'skills' => 'required|string|min:0|max:100',
         ]);
-        if (!$validator->fails()) {
-            $skills->name = $request->input('name');
-            $skills->skills = $request->input('skills');
-            $isSaved = $skills->save();
+
+        if ($validator->fails()) {
             return response()->json([
-                'message' => $isSaved ? 'Update Skill Successfully' : 'Update Skill Failed'
-            ], $isSaved ? Response::HTTP_OK : Response::HTTP_BAD_REQUEST);
-        } else {
-            return response()->json([
-                'message' => $validator->getMessageBag()->first()
+                'message' => $validator->errors()->first()
             ], Response::HTTP_BAD_REQUEST);
         }
+
+        $user = Skill::findOrFail($id);
+        $user->name = $request->input('name');
+        $user->skills = $request->input('skills');
+        $isSaved = $user->save();
+
+        return response()->json([
+            'message' => $isSaved ? 'Update Skill Successfully' : 'Update Skill Failed'
+        ], $isSaved ? Response::HTTP_OK : Response::HTTP_BAD_REQUEST);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Skill $skills)
+    public function destroy(Skill $user)
     {
-        $isDelete = $skills->delete();
+        $isDelete = $user->delete();
         return response()->json(
             ['message' => $isDelete ? ' Delete Successfully!' : 'Deleted Failed!'],
             $isDelete ? Response::HTTP_OK : Response::HTTP_BAD_REQUEST

@@ -21,7 +21,7 @@
                             @csrf
                             <div class="form-group">
                                 <label for="SkillsName">Skills Name</label>
-                                <input type="text" class="form-control" value="{{ $skill->name }}" id="name"
+                                <input type="text" class="form-control" value="{{ $user->name }}" id="name"
                                     placeholder="Enter Skills Name">
 
                                 <br>
@@ -32,13 +32,13 @@
                                         <div class="info">
                                             <div class="percentagem-num" id="SkillsRange"></div>
                                             <div class="progressBar">
-                                                <div class="percentagem" style="width: {{ $skill->skills }};"></div>
+                                                <div class="percentagem" style="width: {{ $user->skills }};"></div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <input type="range" class="custom-range" value="{{ $skill->skills }}" id="skills"
-                                    min="0" max="100" required>
+                                <input type="range" class="custom-range" value="{{ $user->skills }}" id="skills" min="0"
+                                    max="100" required>
                             </div>
 
                             <button type="submit" class="btn btn-primary">Save</button>
@@ -55,18 +55,17 @@
 
 {{-- Edit --}}
 <script>
-    document.getElementById('form').addEventListener('submit', function(event) {
+document.getElementById('form').addEventListener('submit', function(event) {
     event.preventDefault();
-    const formData = new FormData();
-    formData.append('_method','PUT');
-        formData.append('name', document.getElementById('name').value);
-        formData.append('skills', document.getElementById('skills').value);
-        axios.post('{{ route('user.update',$skill)}}', formData)
-
+    let formData = new FormData();
+    formData.append('_method', 'PUT');
+    formData.append('name', document.getElementById('name').value);
+    formData.append('skills', document.getElementById('skills').value);
+    axios.post('{{ route('user.update', $user->id) }}', formData)
         .then(function(response) {
             toastr.success(response.data.message);
             console.log(response);
-            document.getElementById('form');
+            window.location.href = '{{ route('user.create') }}';
         })
         .catch(function(error) {
             toastr.error(error.response.data.message);
@@ -81,5 +80,6 @@ function updatePercentage(element, percentage) {
 skills.addEventListener('input', function() {
     updatePercentage(SkillsRange, this.value);
 });
+
 </script>
 @endsection
