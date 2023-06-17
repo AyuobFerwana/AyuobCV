@@ -320,6 +320,7 @@
 
     <script src="{{ asset('js/toastr/toastr.min.js') }}"></script>
     <script src="{{ asset('js/axios.js') }}"></script>
+    <script src="{{ asset('js/sweet.js') }}"></script>
     <script src="{{ asset('js/Crud.js') }}"></script>
     @yield('script')
 

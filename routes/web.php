@@ -17,4 +17,4 @@ Route::get('ayuobferwana' , 'CvController@show')->name('cv.show');
 
 Route::redirect('/', 'dashboard');
 Route::view('/dashboard', 'dashboard.parent')->name('home');
-Route::resource('user', UserController::class);
+Route::resource('/user', UserController::class);

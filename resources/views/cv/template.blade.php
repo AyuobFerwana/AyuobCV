@@ -262,63 +262,33 @@
                         <div class="mh-professional-skill wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.3s">
                             <h3>Technical Skills</h3>
                             <div class="each-skills">
-                                <div class="candidatos">
+                                {{-- <div class="candidatos">
                                     <div class="parcial">
                                         <div class="info">
-                                            <div class="nome">Javascript</div>
-                                            <div class="percentagem-num" id="jsPercentage">%</div>
+                                            <div class="nome">{{ $skill->name }}</div>
+                                            <div class="percentagem-num">%{{ $skill->skills }}</div>
                                         </div>
                                         <div class="progressBar">
-                                            <div class="percentagem" style="width: %;"></div>
+                                            <div class="percentagem" style="width:{{ $skill->skills }}%;"></div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="candidatos">
-                                    <div class="parcial">
-                                        <div class="info">
-                                            <div class="nome">Html</div>
-                                            <div class="percentagem-num" id="htmlPercentage">%</div>
-                                        </div>
-                                        <div class="progressBar">
-                                            <div class="percentagem" style="width: %;"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="candidatos">
-                                    <div class="parcial">
-                                        <div class="info">
-                                            <div class="nome">Css</div>
-                                            <div class="percentagem-num" id="cssPercentage">%</div>
-                                        </div>
-                                        <div class="progressBar">
-                                            <div class="percentagem" style="width: %;"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="candidatos">
-                                    <div class="parcial">
-                                        <div class="info">
-                                            <div class="nome">PHP</div>
-                                            <div class="percentagem-num" id="phpPercentage">%</div>
-                                        </div>
-                                        <div class="progressBar">
-                                            <div class="percentagem" style="width: %;"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="candidatos">
-                                    <div class="parcial">
-                                        <div class="info">
-                                            <div class="nome">PHP Laravel</div>
-                                            <div class="percentagem-num" id="laravelPercentage">%</div>
-                                        </div>
-                                        <div class="progressBar">
-                                            <div class="percentagem" style="width: %;"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                                </div> --}}
 
+                                @foreach ($skills as $skill )
+                                <div class="candidatos">
+                                    <div class="parcial">
+                                        <div class="info">
+                                            <div class="nome">{{ $skill->name }}</div>
+                                            <div class="percentagem-num">{{ $skill->skills }}%</div>
+                                        </div>
+                                        <div class="progressBar">
+                                            <div class="percentagem" style="width: {{ $skill->skills }}%;"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                @endforeach
+
+                            </div>
                         </div>
                     </div>
                 </div>

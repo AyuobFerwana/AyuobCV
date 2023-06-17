@@ -3,8 +3,11 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\Skill;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\ValidationException;
 use Symfony\Component\HttpFoundation\Response;
 
 class UserController extends Controller
@@ -14,7 +17,6 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
     }
 
     /**
@@ -22,7 +24,8 @@ class UserController extends Controller
      */
     public function create()
     {
-        return response()->view('dashboard.skills');
+        $skills = Skill::all();
+        return response()->view('dashboard.skills', compact('skills'));
     }
 
     /**
@@ -30,22 +33,15 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        $validator = Validator($request->all(), [
-            'jsRange' => 'required|integer|min:0|max:100',
-            'htmlRange' => 'required|integer|min:0|max:100',
-            'cssRange' => 'required|integer|min:0|max:100',
-            'phpRange' => 'required|integer|min:0|max:100',
-            'laravelRange' => 'required|integer|min:0|max:100',
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|string|min:3|max:50',
+            'skills' => 'required|string|min:0|max:100',
         ]);
-
         if (!$validator->fails()) {
-            $users = new User();
-            $users->js_skills = $request->input('jsRange');
-            $users->html_skills = $request->input('htmlRange');
-            $users->css_skills = $request->input('cssRange');
-            $users->php_skills = $request->input('phpRange');
-            $users->laravel_skills = $request->input('laravelRange');
-            $isSaved = $users->save();
+            $skills = new Skill();
+            $skills->name = $request->input('name');
+            $skills->skills = $request->input('skills');
+            $isSaved = $skills->save();
             return response()->json([
                 'message' => $isSaved ? 'Create Skills Successfully' : 'Create Skills Failed'
             ], $isSaved ? Response::HTTP_OK : Response::HTTP_BAD_REQUEST);
@@ -67,24 +63,43 @@ class UserController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Skill $skill)
     {
-        //
+        return response()->view('dashboard.edit', compact('skill'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Skill $skills)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|string|min:3|max:50',
+            'skills' => 'required|string|min:0|max:100',
+        ]);
+        if (!$validator->fails()) {
+            $skills->name = $request->input('name');
+            $skills->skills = $request->input('skills');
+            $isSaved = $skills->save();
+            return response()->json([
+                'message' => $isSaved ? 'Update Skill Successfully' : 'Update Skill Failed'
+            ], $isSaved ? Response::HTTP_OK : Response::HTTP_BAD_REQUEST);
+        } else {
+            return response()->json([
+                'message' => $validator->getMessageBag()->first()
+            ], Response::HTTP_BAD_REQUEST);
+        }
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Skill $skills)
     {
-        //
+        $isDelete = $skills->delete();
+        return response()->json(
+            ['message' => $isDelete ? ' Delete Successfully!' : 'Deleted Failed!'],
+            $isDelete ? Response::HTTP_OK : Response::HTTP_BAD_REQUEST
+        );
     }
 }
