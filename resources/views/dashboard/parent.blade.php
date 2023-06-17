@@ -240,6 +240,16 @@
                             </a>
                           </li>
 
+                          <li class="nav-item">
+                            <a href="{{ route('professional.create') }}" class="nav-link">
+                              {{-- <i class="nav-icon far fa-image"></i> --}}
+                              <i class="fas fa-code-branch"></i>
+                              <p>
+                                Professional Skills
+                              </p>
+                            </a>
+                          </li>
+
 
                     </ul>
                 </nav>

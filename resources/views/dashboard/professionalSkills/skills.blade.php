@@ -1,5 +1,5 @@
 @extends('dashboard.parent')
-@section('title', 'Skills')
+@section('title', 'Professional Skills')
 
 @section('style')
 
@@ -14,13 +14,13 @@
             <div class="col-sm-6">
                 <div class="card card-secondary">
                     <div class="card-header">
-                        <h3 class="card-title">Skills Range</h3>
+                        <h3 class="card-title">Professional Skills Range</h3>
                     </div>
                     <div class="card-body">
                         <form id="form">
                             @csrf
                             <div class="form-group">
-                                <label for="SkillsName">Skills Name</label>
+                                <label for="SkillsName">Professional Skills Name</label>
                                 <input type="text" class="form-control" id="name" placeholder="Enter Skills Name">
 
                                 <br>
@@ -40,7 +40,7 @@
                                     required>
                             </div>
 
-                            <button type="submit" class="btn btn-primary">Submit</button>
+                            <button type="submit" class="btn btn-primary">Create</button>
                         </form>
                     </div>
                 </div>
@@ -83,7 +83,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($skills as $skill)
+                                @foreach ($professional as $skill)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $skill->name }}</td>
@@ -91,8 +91,8 @@
                                         <div class="progress progress-xs">
                                             @if ($skill->skills < 50)
                                             <div class="progress-bar progress-bar-danger" style="width: {{ $skill->skills }}%"></div>
-                                            @elseif($skill->skills >= 50 && $skill->skills < 70)
-                                            <div class="progress-bar bg-warning" style="width: {{ $skill->skills }}%"></div>
+                                      WSS      @elseif($skill->skills >= 50 && $skill->skills < 70)
+                                     S       <div class="progress-bar bg-warning" style="width: {{ $skill->skills }}%"></div>
                                             @else
                                             <div class="progress-bar bg-success" style="width: {{ $skill->skills }}%"></div>
                                             @endif
@@ -109,7 +109,7 @@
                                     </td>
                                     <td>
                                         <div class="btn-group">
-                                            <a  href="{{ route('user.edit', $skill->id) }}"
+                                            <a  href="{{ route('professional.edit', $skill->id) }}"
                                                 class="btn btn-square btn-outline-success m-2 border-rad">
                                                 <i class="fas fa-edit"></i>
                                             </a>
@@ -122,12 +122,11 @@
                                 </tr>
                                 @endforeach
                             </tbody>
-
-                </table>
+                        </table>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-    </div>
     </div>
 </section>
 
@@ -143,7 +142,7 @@
     let formData = new FormData();
     formData.append('name', document.getElementById('name').value);
     formData.append('skills', document.getElementById('skills').value);
-    axios.post('{{ route('user.store') }}', formData)
+    axios.post('{{ route('professional.store') }}', formData)
         .then(function(response) {
             toastr.success(response.data.message);
             console.log(response);
@@ -171,7 +170,7 @@ skills.addEventListener('input', function() {
 {{-- Delete --}}
 <script>
     function performDestroy(id, reference) {
-        confirmDestroy('/user', id, reference);
+        confirmDestroy('/professional', id, reference);
     }
 </script>
 

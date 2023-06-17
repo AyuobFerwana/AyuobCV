@@ -13,6 +13,8 @@ return new class extends Migration
     {
         Schema::create('pro_skills', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->string('skills');
             $table->timestamps();
         });
     }

@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\ProSkill;
+use Dotenv\Validator;
 use Illuminate\Http\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 class ProSkillController extends Controller
 {
@@ -18,9 +20,10 @@ class ProSkillController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(ProSkill $professional)
     {
-        //
+        $professional = ProSkill::all();
+        return response()->view('dashboard.professionalSkills.skills' ,compact('professional'));
     }
 
     /**
@@ -28,7 +31,23 @@ class ProSkillController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validator = Validator($request->all(), [
+            'name' => 'required|string|min:3|max:50',
+            'skills' => 'required|string|min:0|max:100',
+        ]);
+        if (!$validator->fails()) {
+            $proSkill = new ProSkill();
+            $proSkill->name = $request->input('name');
+            $proSkill->skills = $request->input('skills');
+            $isSaved = $proSkill->save();
+            return response()->json([
+                'message' => $isSaved ? 'Create Skills Successfully' : 'Create Skills Failed'
+            ], $isSaved ? Response::HTTP_OK : Response::HTTP_BAD_REQUEST);
+        } else {
+            return response()->json([
+                'message' => $validator->getMessageBag()->first()
+            ], Response::HTTP_BAD_REQUEST);
+        }
     }
 
     /**
@@ -42,24 +61,46 @@ class ProSkillController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(ProSkill $proSkill)
+    public function edit(ProSkill $proSkill , $id)
     {
-        //
+        $proSkill = ProSkill::findOrFail($id);
+        return response()->view('dashboard.professionalSkills.edit', compact('proSkill'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, ProSkill $proSkill)
+    public function update(Request $request,  ProSkill $proSkill , $id)
     {
-        //
+        $validator = Validator($request->all(), [
+            'name' => 'required|string|min:3|max:50',
+            'skills' => 'required|string|min:0|max:100',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'message' => $validator->errors()->first()
+            ], Response::HTTP_BAD_REQUEST);
+        }
+        $proSkill = ProSkill::findOrFail($id);
+        $proSkill->name = $request->input('name');
+        $proSkill->skills = $request->input('skills');
+        $isSaved = $proSkill->save();
+
+        return response()->json([
+            'message' => $isSaved ? 'Update Skill Successfully' : 'Update Skill Failed'
+        ], $isSaved ? Response::HTTP_OK : Response::HTTP_BAD_REQUEST);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(ProSkill $proSkill)
+    public function destroy(ProSkill $professional)
     {
-        //
+        $isDelete = $professional->delete();
+        return response()->json(
+            ['message' => $isDelete ? ' Delete Successfully!' : 'Deleted Failed!'],
+            $isDelete ? Response::HTTP_OK : Response::HTTP_BAD_REQUEST
+        );
     }
 }

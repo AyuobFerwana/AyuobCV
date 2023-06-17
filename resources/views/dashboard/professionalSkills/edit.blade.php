@@ -1,5 +1,5 @@
 @extends('dashboard.parent')
-@section('title', 'Skills')
+@section('title', 'Edit Professional Skills')
 
 @section('style')
 
@@ -21,7 +21,7 @@
                             @csrf
                             <div class="form-group">
                                 <label for="SkillsName">Skills Name</label>
-                                <input type="text" class="form-control" value="{{ $user->name }}" id="name"
+                                <input type="text" class="form-control" value="{{ $proSkill->name }}" id="name"
                                     placeholder="Enter Skills Name">
 
                                 <br>
@@ -32,12 +32,12 @@
                                         <div class="info">
                                             <div class="percentagem-num" id="SkillsRange"></div>
                                             <div class="progressBar">
-                                                <div class="percentagem" style="width: {{ $user->skills }};"></div>
+                                                <div class="percentagem" style="width: {{ $proSkill->skills }};"></div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <input type="range" class="custom-range" value="{{ $user->skills }}" id="skills" min="0"
+                                <input type="range" class="custom-range" value="{{ $proSkill->skills }}" id="skills" min="0"
                                     max="100" required>
                             </div>
 
@@ -61,11 +61,11 @@ document.getElementById('form').addEventListener('submit', function(event) {
     formData.append('_method', 'PUT');
     formData.append('name', document.getElementById('name').value);
     formData.append('skills', document.getElementById('skills').value);
-    axios.post('{{ route('user.update', $user->id) }}', formData)
+    axios.post('{{ route('professional.update', $proSkill->id) }}', formData)
         .then(function(response) {
             toastr.success(response.data.message);
             console.log(response);
-            window.location.href = '{{ route('user.create') }}';
+            window.location.href = '{{ route('professional.create') }}';
         })
         .catch(function(error) {
             toastr.error(error.response.data.message);
