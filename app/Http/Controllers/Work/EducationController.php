@@ -12,9 +12,10 @@ class EducationController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Education $education)
     {
-        //
+        $education = Education::all();
+        return response()->view('dashboard.education.index', compact('education'));
     }
 
     /**
@@ -33,12 +34,16 @@ class EducationController extends Controller
         $validator = Validator($request->all(), [
             'expertise' => 'required|string|min:3|max:50',
             'educaName' => 'required|string|min:3|max:50',
-            'summernote' => 'required|string|min:10|max:100',
+            'year' => 'required|string|min:3|max:50',
+            'link' => 'required|string|min:3|max:5000',
+            'summernote' => 'required|string|min:10|max:900',
         ]);
         if (!$validator->fails()) {
             $educat = new Education();
             $educat->expertise = $request->input('expertise');
             $educat->educaName = $request->input('educaName');
+            $educat->year = $request->input('year');
+            $educat->link = $request->input('link');
             $educat->summernote = $request->input('summernote');
             $isSaved = $educat->save();
             return response()->json([
@@ -62,24 +67,52 @@ class EducationController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Education $educat, $id)
     {
-        //
+
+        $educat = Education::findOrFail($id);
+        return response()->view('dashboard.education.edit', compact('educat'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Education $educat, $id)
     {
-        //
+        $validator = Validator($request->all(), [
+            'expertise' => 'required|string|min:3|max:50',
+            'educaName' => 'required|string|min:3|max:50',
+            'year' => 'required|string|min:3|max:50',
+            'link' => 'required|string|min:3|max:5000',
+            'summernote' => 'required|string|min:10|max:900',
+        ]);
+        if (!$validator->fails()) {
+            $educat = Education::findOrFail($id);
+            $educat->expertise = $request->input('expertise');
+            $educat->educaName = $request->input('educaName');
+            $educat->year = $request->input('year');
+            $educat->link = $request->input('link');
+            $educat->summernote = $request->input('summernote');
+            $isSaved = $educat->save();
+            return response()->json([
+                'message' => $isSaved ? 'Update educat Successfully' : 'Update educat Failed'
+            ], $isSaved ? Response::HTTP_OK : Response::HTTP_BAD_REQUEST);
+        } else {
+            return response()->json([
+                'message' => $validator->getMessageBag()->first()
+            ], Response::HTTP_BAD_REQUEST);
+        }
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Education $education)
     {
-        //
+        $isDeleted = $education->delete();
+        return response()->json(
+            ['message' => $isDeleted ? 'Delete Success' : 'Delete Failed'],
+            $isDeleted ? Response::HTTP_OK : Response::HTTP_BAD_REQUEST
+        );
     }
 }

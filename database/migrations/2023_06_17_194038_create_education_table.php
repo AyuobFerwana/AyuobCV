@@ -15,6 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('expertise');
             $table->string('educaName');
+            $table->string('year');
+            $table->string('link');
             $table->text('summernote');
             $table->timestamps();
         });
