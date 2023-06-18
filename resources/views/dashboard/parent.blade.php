@@ -250,6 +250,18 @@
                             </a>
                           </li>
 
+                          <li class="nav-header">Education & Work Experience </li>
+
+
+                          <li class="nav-item">
+                            <a href="{{ route('education.create') }}" class="nav-link">
+                              <i class="fas fa-laptop-house"></i>
+                              <p>
+                                Education
+                              </p>
+                            </a>
+                          </li>
+
 
                     </ul>
                 </nav>

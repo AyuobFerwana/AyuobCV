@@ -892,14 +892,14 @@
                         <div class="row">
                             <div class="col-sm-6">
                                 <div class="text-left text-xs-center">
-                                    <p><a href="templateshub.net">Templates Hub</a></p>
+                                    <p><a href="templateshub.net">Ayuob Ferwana</a></p>
                                 </div>
                             </div>
                             <div class="col-sm-6">
                                 <ul class="social-icon">
                                     <li><a href="https://www.facebook.com/profile.php?id=100006618018904"><i class="fa fa-facebook"></i></a></li>
                                     <li><a href="https://github.com/AyuobFerwana"><i class="fa fa-github"></i></a></li>
-                                    <li><a href="https://www.linkedin.com/in/ayuob-ferwana-aa742127a/"><i class="fa fa-twitter"></i></a></li>
+                                    <li><a href="https://www.linkedin.com/in/ayuob-ferwana-aa742127a/"><i class="fa fa-linkedin"></i></a></li>
                                     <li><a href="https://twitter.com/ayuobnasser23"><i class="fa fa-twitter"></i></a></li>
                                 </ul>
                             </div>

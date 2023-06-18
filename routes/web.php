@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\UserController;
 use App\Http\Controllers\ProSkillController;
+use App\Http\Controllers\Work\EducationController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,3 +21,4 @@ Route::get('ayuobferwana' , 'CvController@show')->name('cv.show');
 Route::view('/dashboard', 'dashboard.parent')->name('home');
 Route::resource('/user', UserController::class);
 Route::resource('/professional',ProSkillController::class);
+Route::resource('/education' , EducationController::class);
