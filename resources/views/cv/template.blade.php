@@ -862,6 +862,20 @@
                console.log(error);
            });
    });
+
+    // Initialize Pusher
+    var pusher = new Pusher('{{ env('PUSHER_APP_KEY') }}', {
+        cluster: '{{ env('PUSHER_APP_CLUSTER') }}',
+        encrypted: true
+    });
+
+    // Subscribe to the channel and bind to the event
+    var channel = pusher.subscribe('form-submissions');
+    channel.bind('new-submission', function(data) {
+        toastr.info('New form submission received');
+    });
+
+    
     </script>
     <!-- ****************
       After neccessary customization/modification, Please minify

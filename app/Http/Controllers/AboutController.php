@@ -20,7 +20,7 @@ class AboutController extends Controller
      */
     public function create()
     {
-        return response()->view();
+        return response()->view('dashboard.about.create');
     }
 
     /**
