@@ -19,7 +19,7 @@ class UserSeeder extends Seeder
             'phone' => '(972+)0592549688',
             'email' => 'ayuobnasser21@gmail.com',
             'address' => 'Palestine / Gaza',
-            'image'=>'cv/assets/images/ayuob.png'
+            'image'=>'/cv/assets/images/ayuob.png'
         ];
 
         User::create($user);

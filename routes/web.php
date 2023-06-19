@@ -17,8 +17,10 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-Route::redirect('/', 'ayuobferwana');
-Route::get('ayuobferwana' , 'CvController@show')->name('cv.show');
+Route::redirect('/', app()->getLocale().'/ayuobferwana');
+Route::middleware('locale')->prefix('{locale}')->group(function() {
+  Route::get('/ayuobferwana' , 'CvController@show')->name('cv.show');
+});
 
 Route::view('/dashboard', 'dashboard.parent')->name('home');
 Route::resource('/user', UserController::class);

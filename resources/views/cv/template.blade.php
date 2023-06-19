@@ -1,8 +1,9 @@
 <!doctype html>
-<html lang="en">
+
+<html lang="{{app()->getLocale()}}" dir="{{app()->isLocale('en') ? 'ltr' : 'rtl'}}">
 
 <head>
-    <title> Ayuob Ferwana </title>
+    <title> {{ __('name') }} </title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -13,36 +14,36 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- FAV AND ICONS   -->
-    <link rel="shortcut icon" href="{{asset('cv/assets/images/favicon.ico')}}">
+    <link rel="shortcut icon" href="{{ asset('cv/assets/images/favicon.ico') }}">
     <link rel="shortcut icon" href="assets/images/apple-icon.png">
-    <link rel="shortcut icon" sizes="72x72" href="{{asset('cv/assets/images/apple-icon-72x72.png')}}">
-    <link rel="shortcut icon" sizes="114x114" href="{{asset('cv/assets/images/apple-icon-114x114.png')}}">
+    <link rel="shortcut icon" sizes="72x72" href="{{ asset('cv/assets/images/apple-icon-72x72.png') }}">
+    <link rel="shortcut icon" sizes="114x114" href="{{ asset('cv/assets/images/apple-icon-114x114.png') }}">
 
     <!-- Google Font-->
     <link href="http://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="{{asset('cv/assets/icons/font-awesome-4.7.0/css/font-awesome.min.css')}}">
+    <link rel="stylesheet" href="{{ asset('cv/assets/icons/font-awesome-4.7.0/css/font-awesome.min.css') }}">
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="{{asset('cv/assets/plugins/css/bootstrap.min.css')}}">
+    <link rel="stylesheet" href="{{ asset('cv/assets/plugins/css/bootstrap.min.css') }}">
     <!-- Animate CSS-->
-    <link rel="stylesheet" href="{{asset('cv/assets/plugins/css/animate.css')}}">
+    <link rel="stylesheet" href="{{ asset('cv/assets/plugins/css/animate.css') }}">
     <!-- Owl Carousel CSS-->
-    <link rel="stylesheet" href="{{asset('cv/assets/plugins/css/owl.css')}}">
+    <link rel="stylesheet" href="{{ asset('cv/assets/plugins/css/owl.css') }}">
     <!-- Fancybox-->
-    <link rel="stylesheet" href="{{asset('cv/assets/plugins/css/jquery.fancybox.min.css')}}">
+    <link rel="stylesheet" href="{{ asset('cv/assets/plugins/css/jquery.fancybox.min.css') }}">
     <!-- Custom CSS-->
-    <link rel="stylesheet" href="{{asset('cv/assets/css/styles.css')}}">
-    <link rel="stylesheet" href="{{asset('cv/assets/css/responsive.css')}}">
+    <link rel="stylesheet" href="{{ asset('cv/assets/css/styles.css') }}">
+    <link rel="stylesheet" href="{{ asset('cv/assets/css/responsive.css') }}">
 
     <!-- Colors -->
-    <link rel="alternate stylesheet" href="{{asset('cv/assets/css/colors/blue.css')}}" title="blue">
-    <link rel="stylesheet" href="{{asset('cv/assets/css/colors/defauld.css')}}" title="defauld">
-    <link rel="alternate stylesheet" href="{{asset('cv/assets/css/colors/green.css')}}" title="green">
-    <link rel="alternate stylesheet" href="{{asset('cv/assets/css/colors/blue-munsell.css')}}" title="blue-munsell">
-    <link rel="alternate stylesheet" href="{{asset('cv/assets/css/colors/orange.css')}}" title="orange">
-    <link rel="alternate stylesheet" href="{{asset('cv/assets/css/colors/purple.css')}}" title="purple">
-    <link rel="alternate stylesheet" href="{{asset('cv/assets/css/colors/slate.css')}}" title="slate">
-    <link rel="alternate stylesheet" href="{{asset('cv/assets/css/colors/yellow.css')}}" title="yellow">
+    <link rel="alternate stylesheet" href="{{ asset('cv/assets/css/colors/blue.css') }}" title="blue">
+    <link rel="stylesheet" href="{{ asset('cv/assets/css/colors/defauld.css') }}" title="defauld">
+    <link rel="alternate stylesheet" href="{{ asset('cv/assets/css/colors/green.css') }}" title="green">
+    <link rel="alternate stylesheet" href="{{ asset('cv/assets/css/colors/blue-munsell.css') }}" title="blue-munsell">
+    <link rel="alternate stylesheet" href="{{ asset('cv/assets/css/colors/orange.css') }}" title="orange">
+    <link rel="alternate stylesheet" href="{{ asset('cv/assets/css/colors/purple.css') }}" title="purple">
+    <link rel="alternate stylesheet" href="{{ asset('cv/assets/css/colors/slate.css') }}" title="slate">
+    <link rel="alternate stylesheet" href="{{ asset('cv/assets/css/colors/yellow.css') }}" title="yellow">
 </head>
 
 <body class="dark-vertion black-bg">
@@ -97,6 +98,19 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="#mh-contact">Contact</a>
                             </li>
+                            <li class="nav-item">
+                                @php
+                                    $previousUrlFull = url()->current();
+                                    $previousUrlPath = parse_url($previousUrlFull, PHP_URL_PATH);
+                                    $previousUrlPath = substr($previousUrlPath, 3);
+                                @endphp
+
+                                @if (app()->isLocale('en'))
+                                    <a class="nav-link" href="/ar{{ $previousUrlPath }}">عربي</a>
+                                @else
+                                    <a class="nav-link" href="/en{{ $previousUrlPath }}">English</a>
+                                @endif
+                            </li>
                         </ul>
                     </div>
                 </nav>
@@ -119,10 +133,11 @@
                                 <span>Hello I'm</span>
                             </div>
 
-                            <h2 class="wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.2s">{{ $user->name }}
+                            <h2 class="wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.2s">
+                                {{ $user->name }}
                             </h2>
-                            <h4 class="wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.3s">{{ $user->expertise
-                                }}</h4>
+                            <h4 class="wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.3s">
+                                {{ $user->expertise }}</h4>
 
                             <ul>
                                 <li class="wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.4s"><i
@@ -259,7 +274,8 @@
                 </div>
                 <div class="col-sm-12 col-md-6">
                     <div class="mh-skills-inner">
-                        <div class="mh-professional-skill wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.3s">
+                        <div class="mh-professional-skill wow fadeInUp" data-wow-duration="0.8s"
+                            data-wow-delay="0.3s">
                             <h3>Technical Skills</h3>
                             <div class="each-skills">
                                 {{-- <div class="candidatos">
@@ -274,18 +290,18 @@
                                     </div>
                                 </div> --}}
 
-                                @foreach ($skills->reverse() as $skill )
-                                <div class="candidatos">
-                                    <div class="parcial">
-                                        <div class="info">
-                                            <div class="nome">{{ $skill->name }}</div>
-                                            <div class="percentagem-num">{{ $skill->skills }}%</div>
-                                        </div>
-                                        <div class="progressBar">
-                                            <div class="percentagem" style="width: {{ $skill->skills }}%;"></div>
+                                @foreach ($skills->reverse() as $skill)
+                                    <div class="candidatos">
+                                        <div class="parcial">
+                                            <div class="info">
+                                                <div class="nome">{{ $skill->name }}</div>
+                                                <div class="percentagem-num">{{ $skill->skills }}%</div>
+                                            </div>
+                                            <div class="progressBar">
+                                                <div class="percentagem" style="width: {{ $skill->skills }}%;"></div>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
                                 @endforeach
                             </div>
                         </div>
@@ -296,11 +312,12 @@
                         <h3>Professional Skills</h3>
                         <ul class="mh-professional-progress">
                             @foreach ($proSkills as $proSkill)
-                            <li>
-                                <div class="mh-progress mh-progress-circle" data-progress="{{ $proSkill->skills }}">
-                                </div>
-                                <div class="pr-skill-name">{{ $proSkill->name }}</div>
-                            </li>
+                                <li>
+                                    <div class="mh-progress mh-progress-circle"
+                                        data-progress="{{ $proSkill->skills }}">
+                                    </div>
+                                    <div class="pr-skill-name">{{ $proSkill->name }}</div>
+                                </li>
                             @endforeach
                         </ul>
                     </div>
@@ -323,15 +340,14 @@
                             <h3 class="wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.2s">Education</h3>
                             <div class="mh-education-deatils">
                                 <!-- Education Institutes-->
-                                @foreach ($education as $educat )
-
-                                <div class="mh-education-item dark-bg wow fadeInUp" data-wow-duration="0.8s"
-                                    data-wow-delay="0.3s">
-                                    <h4>{{ $educat->expertise }} <a href="{{ $educat->link }}">{{ $educat->educaName
-                                            }}</a></h4>
-                                    <div class="mh-eduyear">{{ $educat->year }}</div>
-                                    <p>{!! $educat->summernote !!} </p>
-                                </div>
+                                @foreach ($education as $educat)
+                                    <div class="mh-education-item dark-bg wow fadeInUp" data-wow-duration="0.8s"
+                                        data-wow-delay="0.3s">
+                                        <h4>{{ $educat->expertise }} <a
+                                                href="{{ $educat->link }}">{{ $educat->educaName }}</a></h4>
+                                        <div class="mh-eduyear">{{ $educat->year }}</div>
+                                        <p>{!! $educat->summernote !!} </p>
+                                    </div>
                                 @endforeach
                                 <!-- Education Institutes-->
                             </div>
@@ -404,13 +420,14 @@
                                 data-wow-delay="0.3s"><span>Branding</span></li>
                             <li data-filter=".mockup" class="wow fadeInUp" data-wow-duration="0.8s"
                                 data-wow-delay="0.4s"><span>Mockups</span></li>
-                            <li data-filter=".ui" class="wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.5s">
+                            <li data-filter=".ui" class="wow fadeInUp" data-wow-duration="0.8s"
+                                data-wow-delay="0.5s">
                                 <span>Photography</span>
                             </li>
                         </ul>
                     </div>
-                    <div class="mh-project-gallery col-sm-12 wow fadeInUp" id="project-gallery" data-wow-duration="0.8s"
-                        data-wow-delay="0.5s">
+                    <div class="mh-project-gallery col-sm-12 wow fadeInUp" id="project-gallery"
+                        data-wow-duration="0.8s" data-wow-delay="0.5s">
                         <div class="portfolioContainer row">
                             <div class="grid-item col-md-4 col-sm-6 col-xs-12 user-interface">
                                 <figure>
@@ -719,7 +736,7 @@
                                     <div class="each-info">
                                         <h4>Address</h4>
                                         <address>
-                                            {{$user->address}}
+                                            {{ $user->address }}
                                         </address>
                                     </div>
                                 </div>
@@ -759,20 +776,19 @@
 
 
                                 <div class="col-md-6 col-sm-12">
-                                    <input name="name" class="contact-name form-control" id="name" type="text"
-                                        placeholder="First Name">
+                                    <input name="name" class="contact-name form-control" id="name"
+                                        type="text" placeholder="First Name">
                                 </div>
                                 <div class="col-md-6 col-sm-12">
-                                    <input name="name" class="contact-email form-control" id="L_name" type="text"
-                                        placeholder="Last Name">
+                                    <input name="name" class="contact-email form-control" id="L_name"
+                                        type="text" placeholder="Last Name">
                                 </div>
                                 <div class="col-sm-12">
-                                    <input name="name" class="contact-subject form-control" id="email" type="email"
-                                        placeholder="Your Email">
+                                    <input name="name" class="contact-subject form-control" id="email"
+                                        type="email" placeholder="Your Email">
                                 </div>
                                 <div class="col-sm-12">
-                                    <textarea class="contact-message" id="message" rows="6"
-                                        placeholder="Your Message"></textarea>
+                                    <textarea class="contact-message" id="message" rows="6" placeholder="Your Message"></textarea>
                                 </div>
 
                                 <div class="btn-form col-sm-12">
@@ -785,18 +801,24 @@
                         </form>
                     </div>
                     <div class="col-sm-12 mh-copyright wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.3s">
-                        <div class="row justify-content-center"> <!-- Added justify-content-center class -->
+                        <div class="row justify-content-center">
+                            <!-- Added justify-content-center class -->
                             <div class="col-sm-6">
-                                <div class="text-left text-xs-right"> <!-- Modified class name -->
+                                <div class="text-left text-xs-right">
+                                    <!-- Modified class name -->
                                     <p><a href="#">Ayuob Ferwana</a></p>
                                 </div>
                             </div>
                             <div class="col-sm-6">
                                 <ul class="social-icon">
-                                    <li><a href="https://www.facebook.com/profile.php?id=100006618018904"><i class="fa fa-facebook"></i></a></li>
-                                    <li><a href="https://github.com/AyuobFerwana"><i class="fa fa-github"></i></a></li>
-                                    <li><a href="https://www.linkedin.com/in/ayuob-ferwana-aa742127a/"><i class="fa fa-linkedin"></i></a></li>
-                                    <li><a href="https://twitter.com/ayuobnasser23"><i class="fa fa-twitter"></i></a></li>
+                                    <li><a href="https://www.facebook.com/profile.php?id=100006618018904"><i
+                                                class="fa fa-facebook"></i></a></li>
+                                    <li><a href="https://github.com/AyuobFerwana"><i class="fa fa-github"></i></a>
+                                    </li>
+                                    <li><a href="https://www.linkedin.com/in/ayuob-ferwana-aa742127a/"><i
+                                                class="fa fa-linkedin"></i></a></li>
+                                    <li><a href="https://twitter.com/ayuobnasser23"><i class="fa fa-twitter"></i></a>
+                                    </li>
                                 </ul>
                             </div>
                         </div>
@@ -845,37 +867,35 @@
 
     <script>
         document.getElementById('form').addEventListener('submit', function(event) {
-       event.preventDefault();
-       let formData = new FormData();
-       formData.append('name', document.getElementById('name').value);
-       formData.append('L_name', document.getElementById('L_name').value);
-       formData.append('email', document.getElementById('email').value);
-       formData.append('message', document.getElementById('message').value);
-       axios.post('{{ route('chatForm') }}', formData)
-           .then(function(response) {
-               toastr.success(response.data.message);
-               console.log(response);
-               document.getElementById('form');
-           })
-           .catch(function(error) {
-               toastr.error(error.response.data.message);
-               console.log(error);
-           });
-   });
+            event.preventDefault();
+            let formData = new FormData();
+            formData.append('name', document.getElementById('name').value);
+            formData.append('L_name', document.getElementById('L_name').value);
+            formData.append('email', document.getElementById('email').value);
+            formData.append('message', document.getElementById('message').value);
+            axios.post('{{ route('chatForm') }}', formData)
+                .then(function(response) {
+                    toastr.success(response.data.message);
+                    console.log(response);
+                    document.getElementById('form');
+                })
+                .catch(function(error) {
+                    toastr.error(error.response.data.message);
+                    console.log(error);
+                });
+        });
 
-    // Initialize Pusher
-    var pusher = new Pusher('{{ env('PUSHER_APP_KEY') }}', {
-        cluster: '{{ env('PUSHER_APP_CLUSTER') }}',
-        encrypted: true
-    });
+        // Initialize Pusher
+        var pusher = new Pusher('{{ env('PUSHER_APP_KEY') }}', {
+            cluster: '{{ env('PUSHER_APP_CLUSTER') }}',
+            encrypted: true
+        });
 
-    // Subscribe to the channel and bind to the event
-    var channel = pusher.subscribe('form-submissions');
-    channel.bind('new-submission', function(data) {
-        toastr.info('New form submission received');
-    });
-
-    
+        // Subscribe to the channel and bind to the event
+        var channel = pusher.subscribe('form-submissions');
+        channel.bind('new-submission', function(data) {
+            toastr.info('New form submission received');
+        });
     </script>
     <!-- ****************
       After neccessary customization/modification, Please minify
@@ -893,12 +913,12 @@
                     <h4>Style One </h4>
                     <ul>
                         <li>
-                            <a href="home-one.html"> <img src="{{ asset('cv/assets/images/h1w.png') }}" alt=""
-                                    class="img-fluid"></a>
+                            <a href="home-one.html"> <img src="{{ asset('cv/assets/images/h1w.png') }}"
+                                    alt="" class="img-fluid"></a>
                         </li>
                         <li>
-                            <a href="home-one-w.html"> <img src="{{ asset('cv/assets/images/h1.png') }}" alt=""
-                                    class="img-fluid"></a>
+                            <a href="home-one-w.html"> <img src="{{ asset('cv/assets/images/h1.png') }}"
+                                    alt="" class="img-fluid"></a>
                         </li>
                     </ul>
                 </li>
@@ -906,12 +926,12 @@
                     <h4>Style Two </h4>
                     <ul>
                         <li>
-                            <a href="home-two.html"> <img src="{{ asset('cv/assets/images/h2w.png') }}" alt=""
-                                    class="img-fluid"></a>
+                            <a href="home-two.html"> <img src="{{ asset('cv/assets/images/h2w.png') }}"
+                                    alt="" class="img-fluid"></a>
                         </li>
                         <li>
-                            <a href="home-two-w.html"> <img src="{{ asset('cv/assets/images/h2.png') }}" alt=""
-                                    class="img-fluid"></a>
+                            <a href="home-two-w.html"> <img src="{{ asset('cv/assets/images/h2.png') }}"
+                                    alt="" class="img-fluid"></a>
                         </li>
                     </ul>
                 </li>
@@ -920,12 +940,12 @@
                     <h4>RTl</h4>
                     <ul>
                         <li>
-                            <a href="home-rtl.html"> <img src="{{ asset('cv/assets/images/h3w.png') }}" alt=""
-                                    class="img-fluid"></a>
+                            <a href="home-rtl.html"> <img src="{{ asset('cv/assets/images/h3w.png') }}"
+                                    alt="" class="img-fluid"></a>
                         </li>
                         <li>
-                            <a href="home-rtl-w.html"> <img src="{{ asset('cv/assets/images/h3.png') }}" alt=""
-                                    class="img-fluid"></a>
+                            <a href="home-rtl-w.html"> <img src="{{ asset('cv/assets/images/h3.png') }}"
+                                    alt="" class="img-fluid"></a>
                         </li>
                     </ul>
                 </li>
@@ -942,7 +962,8 @@
                         <div class="purple"></div>
                     </a>
                 </li>
-                <li><a href="#" onclick="setActiveStyleSheet('blue-munsell'); return false;" title="Blue Munsell">
+                <li><a href="#" onclick="setActiveStyleSheet('blue-munsell'); return false;"
+                        title="Blue Munsell">
                         <div class="blue-munsell"></div>
                     </a>
                 </li>
