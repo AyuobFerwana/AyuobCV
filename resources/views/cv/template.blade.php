@@ -274,7 +274,7 @@
                                     </div>
                                 </div> --}}
 
-                                @foreach ($skills as $skill )
+                                @foreach ($skills->reverse() as $skill )
                                 <div class="candidatos">
                                     <div class="parcial">
                                         <div class="info">
@@ -287,7 +287,6 @@
                                     </div>
                                 </div>
                                 @endforeach
-
                             </div>
                         </div>
                     </div>
@@ -297,13 +296,12 @@
                         <h3>Professional Skills</h3>
                         <ul class="mh-professional-progress">
                             @foreach ($proSkills as $proSkill)
-
                             <li>
-                                <div class="mh-progress mh-progress-circle" data-progress="{{ $proSkill->skills }}"></div>
+                                <div class="mh-progress mh-progress-circle" data-progress="{{ $proSkill->skills }}">
+                                </div>
                                 <div class="pr-skill-name">{{ $proSkill->name }}</div>
                             </li>
                             @endforeach
-
                         </ul>
                     </div>
                 </div>
@@ -328,12 +326,13 @@
                                 @foreach ($education as $educat )
 
                                 <div class="mh-education-item dark-bg wow fadeInUp" data-wow-duration="0.8s"
-                                data-wow-delay="0.3s">
-                                <h4>{{ $educat->expertise }} <a href="{{ $educat->link }}">{{ $educat->educaName }}</a></h4>
-                                <div class="mh-eduyear">{{ $educat->year }}</div>
-                                <p>{!! $educat->summernote !!} </p>
-                            </div>
-                            @endforeach
+                                    data-wow-delay="0.3s">
+                                    <h4>{{ $educat->expertise }} <a href="{{ $educat->link }}">{{ $educat->educaName
+                                            }}</a></h4>
+                                    <div class="mh-eduyear">{{ $educat->year }}</div>
+                                    <p>{!! $educat->summernote !!} </p>
+                                </div>
+                                @endforeach
                                 <!-- Education Institutes-->
                             </div>
                         </div>
@@ -700,93 +699,8 @@
         </div>
     </section>
 
-    <!--
-        ===================
-           TESTIMONIALS
-        ===================
-        -->
-    <section class="mh-testimonial" id="mh-testimonial">
-        <div class="home-v-img">
-            <div class="container">
-                <div class="row section-separator">
-                    <div class="col-sm-12 section-title wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.2s">
-                        <h3>Client Reviews</h3>
-                    </div>
-                    <div class="col-sm-12 wow fadeInUp" id="mh-client-review" data-wow-duration="0.8s"
-                        data-wow-delay="0.3s">
-                        <div class="each-client-item">
-                            <div class="mh-client-item dark-bg black-shadow-1">
-                                <img src="{{ asset('cv/assets/images/c-1.png') }}" alt="" class="img-fluid">
-                                <p>Absolute wonderful ! I am completely
-                                    blown away.The very best.I was amazed
-                                    at the quality</p>
-                                <h4>John Mike</h4>
-                                <span>CEO, Author.Inc</span>
-                            </div>
-                        </div>
-                        <div class="each-client-item">
-                            <div class="mh-client-item dark-bg black-shadow-1">
-                                <img src="{{ asset('cv/assets/images/c-1.png') }}" alt="" class="img-fluid">
-                                <p>Absolute wonderful ! I am completely
-                                    blown away.The very best.I was amazed
-                                    at the quality</p>
-                                <h4>John Mike</h4>
-                                <span>CEO, Author.Inc</span>
-                            </div>
-                        </div>
 
-                        <div class="each-client-item">
-                            <div class="mh-client-item dark-bg black-shadow-1">
-                                <img src="{{ asset('cv/assets/images/c-1.png') }}" alt="" class="img-fluid">
-                                <p>Absolute wonderful ! I am completely
-                                    blown away.The very best.I was amazed
-                                    at the quality</p>
-                                <h4>John Mike</h4>
-                                <span>CEO, Author.Inc</span>
-                            </div>
-                        </div>
-                        <div class="each-client-item">
-                            <div class="mh-client-item dark-bg black-shadow-1">
-                                <img src="{{ asset('cv/assets/images/c-1.png') }}" alt="" class="img-fluid">
-                                <p>Absolute wonderful ! I am completely
-                                    blown away.The very best.I was amazed
-                                    at the quality</p>
-                                <h4>John Mike</h4>
-                                <span>CEO, Author.Inc</span>
-                            </div>
-                        </div>
-                        <div class="each-client-item">
-                            <div class="mh-client-item dark-bg black-shadow-1">
-                                <img src="{{ asset('cv/assets/images/c-1.png') }}" alt="" class="img-fluid">
-                                <p>Absolute wonderful ! I am completely
-                                    blown away.The very best.I was amazed
-                                    at the quality</p>
-                                <h4>John Mike</h4>
-                                <span>CEO, Author.Inc</span>
-                            </div>
-                        </div>
 
-                        <div class="each-client-item">
-                            <div class="mh-client-item dark-bg black-shadow-1">
-                                <img src="{{ asset('cv/assets/images/c-1.png') }}" alt="" class="img-fluid">
-                                <p>Absolute wonderful ! I am completely
-                                    blown away.The very best.I was amazed
-                                    at the quality</p>
-                                <h4>John Mike</h4>
-                                <span>CEO, Author.Inc</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!--
-        ===================
-           FOOTER 1
-        ===================
-        -->
     <footer class="mh-footer" id="mh-contact">
         <div class="map-image image-bg">
             <div class="container">
@@ -805,8 +719,7 @@
                                     <div class="each-info">
                                         <h4>Address</h4>
                                         <address>
-                                            5th Avenue, 34th floor, <br>
-                                            New york
+                                            {{$user->address}}
                                         </address>
                                     </div>
                                 </div>
@@ -819,8 +732,7 @@
                                     </div>
                                     <div class="each-info">
                                         <h4>Email</h4>
-                                        <a href="mailto:yourmail@email.com">yourmail@email.com</a><br>
-                                        <a href="mailto:yourmail@email.com">yourmail@email.com</a>
+                                        <a href="https://mail.google.com/mail/u/4/#inbox">{{ $user->email }}</a>
                                     </div>
                                 </div>
                             </div>
@@ -832,51 +744,51 @@
                                     </div>
                                     <div class="each-info">
                                         <h4>Phone</h4>
-                                        <a href="callto:(880)-8976-987">(880)-8976-987</a><br>
-                                        <a href="callto:(880)-8976-987">(880)-8976-987</a>
+                                        <a href="callto:(880)-8976-987">{{ $user->phone }}</a>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-sm-12 col-md-6 wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.3s">
-                        <form id="contactForm" class="single-form quate-form wow fadeInUp" data-toggle="validator">
+                    <div class="col-sm-12 col-md-12 wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.3s"
+                        style="visibility: visible; animation-duration: 0.8s; animation-delay: 0.3s; animation-name: fadeInUp;">
+                        <form id="form" class="single-form quate-form wow fadeInUp" data-toggle="validator"
+                            style="visibility: visible; animation-name: fadeInUp;">
                             <div id="msgSubmit" class="h3 text-center hidden"></div>
                             <div class="row">
+
+
                                 <div class="col-md-6 col-sm-12">
                                     <input name="name" class="contact-name form-control" id="name" type="text"
-                                        placeholder="First Name" required>
+                                        placeholder="First Name">
                                 </div>
                                 <div class="col-md-6 col-sm-12">
                                     <input name="name" class="contact-email form-control" id="L_name" type="text"
-                                        placeholder="Last Name" required>
+                                        placeholder="Last Name">
                                 </div>
                                 <div class="col-sm-12">
                                     <input name="name" class="contact-subject form-control" id="email" type="email"
-                                        placeholder="Your Email" required>
+                                        placeholder="Your Email">
                                 </div>
                                 <div class="col-sm-12">
-                                    <textarea class="contact-message" id="message" rows="6" placeholder="Your Message"
-                                        required></textarea>
+                                    <textarea class="contact-message" id="message" rows="6"
+                                        placeholder="Your Message"></textarea>
                                 </div>
-                                <!-- Subject Button -->
+
                                 <div class="btn-form col-sm-12">
                                     <button type="submit" class="btn btn-fill btn-block" id="form-submit">Send
                                         Message</button>
                                 </div>
+
+
                             </div>
                         </form>
                     </div>
-                    <div class="col-sm-12 col-md-6 wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.5s">
-                        <div class="mh-map">
-                            <div id="mh-map" class="shadow-1"></div>
-                        </div>
-                    </div>
                     <div class="col-sm-12 mh-copyright wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.3s">
-                        <div class="row">
+                        <div class="row justify-content-center"> <!-- Added justify-content-center class -->
                             <div class="col-sm-6">
-                                <div class="text-left text-xs-center">
-                                    <p><a href="templateshub.net">Ayuob Ferwana</a></p>
+                                <div class="text-left text-xs-right"> <!-- Modified class name -->
+                                    <p><a href="#">Ayuob Ferwana</a></p>
                                 </div>
                             </div>
                             <div class="col-sm-6">
@@ -925,14 +837,32 @@
     <!-- isotope js-->
     <script src="{{ asset('cv/assets/plugins/js/isotope.pkgd.js') }}"></script>
     <script src="{{ asset('cv/assets/plugins/js/packery-mode.pkgd.js') }}"></script>
-    <!-- Map api -->
-    <script src="http://maps.googleapis.com/maps/api/js?v=3.exp&amp;key=AIzaSyCRP2E3BhaVKYs7BvNytBNumU0MBmjhhxc">
-    </script>
+
     <!-- Custom Scripts-->
-    <script src="{{ asset('cv/assets/js/map-init.js') }}"></script>
     <script src="{{ asset('cv/assets/js/custom-scripts.js') }}"></script>
 
+    {{-- Chat / Message --}}
 
+    <script>
+        document.getElementById('form').addEventListener('submit', function(event) {
+       event.preventDefault();
+       let formData = new FormData();
+       formData.append('name', document.getElementById('name').value);
+       formData.append('L_name', document.getElementById('L_name').value);
+       formData.append('email', document.getElementById('email').value);
+       formData.append('message', document.getElementById('message').value);
+       axios.post('{{ route('chatForm') }}', formData)
+           .then(function(response) {
+               toastr.success(response.data.message);
+               console.log(response);
+               document.getElementById('form');
+           })
+           .catch(function(error) {
+               toastr.error(error.response.data.message);
+               console.log(error);
+           });
+   });
+    </script>
     <!-- ****************
       After neccessary customization/modification, Please minify
       JavaScript/jQuery according to http://browserdiet.com/en/ for better performance

@@ -50,7 +50,7 @@
                     <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
                 </li>
                 <li class="nav-item d-none d-sm-inline-block">
-                    <a href="index3.html" class="nav-link">Home</a>
+                    <a href="{{ route('home') }}" class="nav-link">Home</a>
                 </li>
                 <li class="nav-item d-none d-sm-inline-block">
                     <a href="#" class="nav-link">Contact</a>
@@ -222,13 +222,30 @@
                         <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
                         <li class="nav-item menu-open">
-                            <a href="#" class="nav-link active">
+                            <a href="{{ route('home') }}" class="nav-link active">
                                 <i class="nav-icon fas fa-tachometer-alt"></i>
                                 <p>
                                     Home
                                 </p>
                             </a>
                         </li>
+
+                        <li class="nav-header">About me
+                        </li>
+
+                        <li class="nav-item">
+                            <a href="{{ route('about.me') }}" class="nav-link">
+                              <i class="fas fa-address-card"></i>
+                              <p>
+                                About me
+                              </p>
+                            </a>
+                          </li>
+
+
+                        <li class="nav-header">Technical Skills & Professional Skills
+                        </li>
+
 
                         <li class="nav-item">
                             <a href="{{ route('user.create') }}" class="nav-link">
@@ -281,7 +298,7 @@
                         </div><!-- /.col -->
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
-                                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                                <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
                                 <li class="breadcrumb-item active">CV</li>
                             </ol>
                         </div><!-- /.col -->
