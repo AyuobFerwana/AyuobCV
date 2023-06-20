@@ -21,7 +21,13 @@
                             @csrf
                             <div class="form-group">
                                 <label for="SkillsName">Skills Name</label>
-                                <input type="text" class="form-control" id="name" placeholder="Enter Skills Name">
+                                <input type="text" class="form-control" id="name_en" placeholder="Enter Skills Name_En">
+                                <br>
+
+                                <label for="SkillsName">أسم المهاره</label>
+
+                                <input type="text" class="form-control" id="name_ar" placeholder="Enter Skills Name_Ar">
+
 
                                 <br>
                                 <label for="jsRange">Skills Range</label>
@@ -77,6 +83,8 @@
                                 <tr>
                                     <th style="width: 10px">ID</th>
                                     <th>Skills</th>
+                                    <th>المهارات</th>
+
                                     <th>Progress</th>
                                     <th style="width: 40px">Label</th>
                                     <th style="width: 91px">Setting</th>
@@ -86,7 +94,9 @@
                                 @foreach ($skills as $skill)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $skill->name }}</td>
+                                    <td>{{ $skill->name_en }}</td>
+                                    <td>{{ $skill->name_ar}}</td>
+
                                     <td>
                                         <div class="progress progress-xs">
                                             @if ($skill->skills < 50)
@@ -141,7 +151,8 @@
  document.getElementById('form').addEventListener('submit', function(event) {
     event.preventDefault();
     let formData = new FormData();
-    formData.append('name', document.getElementById('name').value);
+    formData.append('name_en', document.getElementById('name_en').value);
+    formData.append('name_ar', document.getElementById('name_ar').value);
     formData.append('skills', document.getElementById('skills').value);
     axios.post('{{ route('user.store') }}', formData)
         .then(function(response) {

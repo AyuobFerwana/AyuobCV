@@ -21,21 +21,54 @@
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
+
                         <label for="Expertise">Expertise</label>
-
-                        <input type="text" class="form-control" value="{{ $educat->expertise }}" id="expertise" placeholder="Expertise">
+                        <input type="text" class="form-control" value="{{ $educat->expertise_en }}" id="expertise_en"
+                            placeholder="Expertise_en">
                         <br>
-                        <label for="Education">Education Place</label>
 
-                        <input type="text" class="form-control" value="{{ $educat->educaName }}" id="educaName" placeholder="Education Place"><br>
+                        <label for="Expertise">الخبرة</label>
+                        <input type="text" class="form-control" value="{{ $educat->expertise_ar }}" id="expertise_ar"
+                            placeholder="Expertise_ar">
+                        <br>
+
+
+                        <label for="Education">Education Place</label>
+                        <input type="text" class="form-control" value="{{ $educat->educaName_en }}" id="educaName_en"
+                            placeholder="Education Place_en"><br>
+
+                        <label for="Education">مكان التلعم</label>
+                        <input type="text" class="form-control" value="{{ $educat->educaName_ar }}" id="educaName_ar"
+                            placeholder="Education Place_ar"><br>
+
+
+                        {{-- link --}}
+                        <label for="Link">Link</label>
+                        <input type="text" class="form-control" value="{{ $educat->Link_en }}" id="Link_en"
+                            placeholder="Link"><br>
+
+                        <label for="Link">الرابط</label>
+                        <input type="text" class="form-control" value="{{ $educat->Link_ar }}" id="Link_ar"
+                            placeholder="الرابط"><br>
 
                         <label for="Year">Year</label>
-                        <input type="text" class="form-control" value="{{ $educat->year }}" id="year" placeholder="Year"><br>
+                        <input type="text" class="form-control" value="{{ $educat->year_en }}" id="year_en"
+                            placeholder="Year"><br>
 
+                        <label for="Year">السنة</label>
+                        <input type="text" class="form-control" value="{{ $educat->year_ar }}" id="year_ar"
+                            placeholder="السنة"><br>
 
-                        <textarea id="summernote" name="summernote" placeholder="Place some text here">
-                            {{ $educat->summernote }}
+                        <label for="Content">Content</label>
+                        <textarea id="summernote_en" name="summernote" placeholder="Place some text here">
+                            {{ $educat->summernote_en }}
                         </textarea>
+
+                        <label for="Content">المحتوى</label>
+                        <textarea id="summernote_ar" name="summernote" placeholder="ضع بعض النص هنا">
+                            {{ $educat->summernote_ar }}
+                        </textarea>
+
                     </div>
                     <div class="card-footer">
                         <button type="submit" class="btn btn-info">Save</button>
@@ -65,10 +98,18 @@
        event.preventDefault();
        let formData = new FormData();
        formData.append('_method' , 'PUT');
-       formData.append('expertise', document.getElementById('expertise').value);
-       formData.append('educaName', document.getElementById('educaName').value);
-       formData.append('year', document.getElementById('year').value);
-       formData.append('summernote', document.getElementById('summernote').value);
+       formData.append('expertise_en', document.getElementById('expertise_en').value);
+       formData.append('educaName_en', document.getElementById('educaName_en').value);
+       formData.append('link_en', document.getElementById('link_en').value);
+       formData.append('year_en', document.getElementById('year_en').value);
+       formData.append('summernote_en', document.getElementById('summernote_en').value);
+
+       formData.append('expertise_ar', document.getElementById('expertise_ar').value);
+       formData.append('educaName_ar', document.getElementById('educaName_ar').value);
+       formData.append('link_ar', document.getElementById('link_ar').value);
+       formData.append('year_ar', document.getElementById('year_ar').value);
+       formData.append('summernote_ar', document.getElementById('summernote_ar').value);
+
        axios.post('{{ route('education.update' , $educat->id) }}', formData)
            .then(function(response) {
                toastr.success(response.data.message);

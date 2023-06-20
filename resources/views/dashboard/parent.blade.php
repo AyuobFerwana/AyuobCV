@@ -208,6 +208,16 @@
                           </li>
 
 
+                          <li class="nav-item">
+                            <a href="{{ route('cv.show') }}" class="nav-link">
+                              <i class="fas fa-copyright"></i>
+                              <p>
+                                CV
+                              </p>
+                            </a>
+                          </li>
+
+
                     </ul>
                 </nav>
                 <!-- /.sidebar-menu -->

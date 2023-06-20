@@ -21,7 +21,12 @@
                             @csrf
                             <div class="form-group">
                                 <label for="SkillsName">Professional Skills Name</label>
-                                <input type="text" class="form-control" id="name" placeholder="Enter Skills Name">
+                                <input type="text" class="form-control" id="name_en" placeholder="Enter Skills Name-EN">
+                                <br>
+
+                                <label for="SkillsName">مهارات احترافية</label>
+                                <input type="text" class="form-control" id="name_ar" placeholder="Enter Skills Name-AR">
+
 
                                 <br>
                                 <label for="jsRange">Skills Range</label>
@@ -76,7 +81,9 @@
                             <thead>
                                 <tr>
                                     <th style="width: 10px">ID</th>
-                                    <th>Skills</th>
+                                    <th>ProSkills</th>
+                                    <th>المهارات الاحترافيه</th>
+
                                     <th>Progress</th>
                                     <th style="width: 40px">Label</th>
                                     <th style="width: 91px">Setting</th>
@@ -86,13 +93,15 @@
                                 @foreach ($professional as $skill)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $skill->name }}</td>
+                                    <td>{{ $skill->name_en }}</td>
+                                    <td>{{ $skill->name_ar }}</td>
+
                                     <td>
                                         <div class="progress progress-xs">
                                             @if ($skill->skills < 50)
                                             <div class="progress-bar progress-bar-danger" style="width: {{ $skill->skills }}%"></div>
-                                      WSS      @elseif($skill->skills >= 50 && $skill->skills < 70)
-                                     S       <div class="progress-bar bg-warning" style="width: {{ $skill->skills }}%"></div>
+                                           @elseif($skill->skills >= 50 && $skill->skills < 70)
+                                           <div class="progress-bar bg-warning" style="width: {{ $skill->skills }}%"></div>
                                             @else
                                             <div class="progress-bar bg-success" style="width: {{ $skill->skills }}%"></div>
                                             @endif
@@ -140,7 +149,9 @@
  document.getElementById('form').addEventListener('submit', function(event) {
     event.preventDefault();
     let formData = new FormData();
-    formData.append('name', document.getElementById('name').value);
+    formData.append('name_en', document.getElementById('name_en').value);
+    formData.append('name_ar', document.getElementById('name_ar').value);
+
     formData.append('skills', document.getElementById('skills').value);
     axios.post('{{ route('professional.store') }}', formData)
         .then(function(response) {

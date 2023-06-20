@@ -34,12 +34,14 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'name' => 'required|string|min:3|max:50',
+            'name_en' => 'required|string|min:3|max:50',
+            'name_ar' => 'required|string|min:3|max:50',
             'skills' => 'required|string|min:0|max:100',
         ]);
         if (!$validator->fails()) {
             $skills = new Skill();
-            $skills->name = $request->input('name');
+            $skills->name_en = $request->input('name_en');
+            $skills->name_ar = $request->input('name_ar');
             $skills->skills = $request->input('skills');
             $isSaved = $skills->save();
             return response()->json([
@@ -74,7 +76,9 @@ class UserController extends Controller
     public function update(Request $request, $id)
     {
         $validator = Validator::make($request->all(), [
-            'name' => 'required|string|min:3|max:50',
+            'name_en' => 'required|string|min:3|max:50',
+            'name_ar' => 'required|string|min:3|max:50',
+
             'skills' => 'required|string|min:0|max:100',
         ]);
 
@@ -85,7 +89,9 @@ class UserController extends Controller
         }
 
         $user = Skill::findOrFail($id);
-        $user->name = $request->input('name');
+        $user->name_en = $request->input('name_en');
+        $user->name_ar = $request->input('name_ar');
+
         $user->skills = $request->input('skills');
         $isSaved = $user->save();
 

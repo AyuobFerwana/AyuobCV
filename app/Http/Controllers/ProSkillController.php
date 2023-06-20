@@ -32,12 +32,15 @@ class ProSkillController extends Controller
     public function store(Request $request)
     {
         $validator = Validator($request->all(), [
-            'name' => 'required|string|min:3|max:50',
+            'name_en' => 'required|string|min:3|max:50',
+            'name_ar' => 'required|string|min:3|max:50',
             'skills' => 'required|string|min:0|max:100',
         ]);
         if (!$validator->fails()) {
             $proSkill = new ProSkill();
-            $proSkill->name = $request->input('name');
+            $proSkill->name_en = $request->input('name_en');
+            $proSkill->name_ar = $request->input('name_ar');
+
             $proSkill->skills = $request->input('skills');
             $isSaved = $proSkill->save();
             return response()->json([
@@ -73,7 +76,8 @@ class ProSkillController extends Controller
     public function update(Request $request,  ProSkill $proSkill , $id)
     {
         $validator = Validator($request->all(), [
-            'name' => 'required|string|min:3|max:50',
+            'name_en' => 'required|string|min:3|max:50',
+            'name_ar' => 'required|string|min:3|max:50',
             'skills' => 'required|string|min:0|max:100',
         ]);
 
@@ -83,7 +87,8 @@ class ProSkillController extends Controller
             ], Response::HTTP_BAD_REQUEST);
         }
         $proSkill = ProSkill::findOrFail($id);
-        $proSkill->name = $request->input('name');
+        $proSkill->name_en = $request->input('name_en');
+        $proSkill->name_ar = $request->input('name_ar');
         $proSkill->skills = $request->input('skills');
         $isSaved = $proSkill->save();
 

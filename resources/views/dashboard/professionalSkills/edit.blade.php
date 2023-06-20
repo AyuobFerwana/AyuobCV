@@ -21,8 +21,13 @@
                             @csrf
                             <div class="form-group">
                                 <label for="SkillsName">Skills Name</label>
-                                <input type="text" class="form-control" value="{{ $proSkill->name }}" id="name"
-                                    placeholder="Enter Skills Name">
+                                <input type="text" class="form-control" value="{{ $proSkill->name_en }}" id="name"
+                                    placeholder="Enter Skills Name_EN">
+                                    <br>
+
+                                <label for="SkillsName">اسم المهاره</label>
+                                    <input type="text" class="form-control" value="{{ $proSkill->name_ar }}" id="name"
+                                    placeholder="Enter Skills Name_AR">
 
                                 <br>
                                 <label for="jsRange">Skills Range</label>
@@ -59,7 +64,9 @@ document.getElementById('form').addEventListener('submit', function(event) {
     event.preventDefault();
     let formData = new FormData();
     formData.append('_method', 'PUT');
-    formData.append('name', document.getElementById('name').value);
+    formData.append('name_en', document.getElementById('name_en').value);
+    formData.append('name_ar', document.getElementById('name_ar').value);
+
     formData.append('skills', document.getElementById('skills').value);
     axios.post('{{ route('professional.update', $proSkill->id) }}', formData)
         .then(function(response) {

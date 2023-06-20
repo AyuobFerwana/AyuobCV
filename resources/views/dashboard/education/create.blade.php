@@ -24,23 +24,51 @@
                         {{-- Expertise --}}
                         <label for="Expertise">Expertise</label>
 
-                        <input type="text" class="form-control" id="expertise" placeholder="Expertise">
+                        <input type="text" class="form-control" id="expertise_en" placeholder="Expertise">
+                        <br>
+
+                        <label for="Expertise">الخبره</label>
+                        <input type="text" class="form-control" id="expertise_ar" placeholder="الخبره">
+
+
                         <br>
                         {{-- Education --}}
                         <label for="Education">Education Place</label>
 
-                        <input type="text" class="form-control" id="educaName" placeholder="Education Place"><br>
+                        <input type="text" class="form-control" id="educaName_en" placeholder="Education Place"><br>
+
+                        <label for="Education">مكان التعليم</label>
+
+                        <input type="text" class="form-control" id="educaName_ar" placeholder="مكان التعليم"><br>
+
                         {{-- link --}}
                         <label for="Link">Link</label>
-                        <input type="text" class="form-control" id="link" placeholder="Link"><br>
+                        <input type="text" class="form-control" id="link_en" placeholder="Link"><br>
+
+                        <label for="Link">رابط</label>
+                        <input type="text" class="form-control" id="link_ar" placeholder="رابط"><br>
+
 
                         {{-- Year --}}
                         <label for="Year"> Year </label>
-                        <input type="text" class="form-control" id="year" placeholder="Year"><br>
+                        <input type="text" class="form-control" id="year_en" placeholder="Year"><br>
+
+                        <label for="Year"> السنة </label>
+                        <input type="text" class="form-control" id="year_ar" placeholder="سنة"><br>
+
 
                         {{-- Content --}}
-                        <textarea id="summernote" name="summernote" placeholder="Place some text here"></textarea>
+                        <label for="Content"> Content </label>
+                        <textarea id="summernote_en" name="summernote" placeholder="Place some text here">
+                            Put some text here
+                        </textarea>
+
+                        <label for="Content"> المحتوى </label>
+                        <textarea id="summernote_ar" name="summernote" placeholder="Place some text here">ضع بعض النص هنا</textarea>
+
                     </div>
+
+
                     <div class="card-footer">
                         <button type="submit" class="btn btn-info">Create</button>
 
@@ -61,7 +89,9 @@
 <script src="{{ asset('dash/plugins/summernote/summernote-bs4.min.js') }}"></script>
 <script>
     $(function () {
-        $('#summernote').summernote();
+        $('#summernote_en').summernote();
+        $('#summernote_ar').summernote();
+
     });
 </script>
 
@@ -69,12 +99,19 @@
     document.getElementById('form').addEventListener('submit', function(event) {
        event.preventDefault();
        let formData = new FormData();
-       formData.append('expertise', document.getElementById('expertise').value);
-       formData.append('educaName', document.getElementById('educaName').value);
-       formData.append('year', document.getElementById('year').value);
-       formData.append('link', document.getElementById('link').value);
+       formData.append('expertise_en', document.getElementById('expertise_en').value);
+       formData.append('educaName_en', document.getElementById('educaName_en').value);
+       formData.append('year_en', document.getElementById('year_en').value);
+       formData.append('link_en', document.getElementById('link_en').value);
+       formData.append('summernote_en', document.getElementById('summernote_en').value);
 
-       formData.append('summernote', document.getElementById('summernote').value);
+
+       formData.append('expertise_ar', document.getElementById('expertise_ar').value);
+       formData.append('educaName_ar', document.getElementById('educaName_ar').value);
+       formData.append('year_ar', document.getElementById('year_ar').value);
+       formData.append('link_ar', document.getElementById('link_ar').value);
+       formData.append('summernote_ar', document.getElementById('summernote_ar').value);
+
        axios.post('{{ route('education.store') }}', formData)
            .then(function(response) {
                toastr.success(response.data.message);

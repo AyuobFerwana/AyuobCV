@@ -9,8 +9,17 @@ class Education extends Model
 {
     use HasFactory;
     protected $fillable=[
-        'expertise',
-        'educaName',
-        'summernote'
+        'expertise_en',
+        'educaName_en',
+        'link_en',
+        'year_en',
+        'summernote_en',
+
+        'expertise_ar',
+        'educaName_ar',
+        'link_ar',
+        'year_ar',
+        'summernote_ar',
+
     ];
 }

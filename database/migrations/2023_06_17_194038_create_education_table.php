@@ -13,11 +13,19 @@ return new class extends Migration
     {
         Schema::create('education', function (Blueprint $table) {
             $table->id();
-            $table->string('expertise');
-            $table->string('educaName');
-            $table->string('year');
-            $table->string('link');
-            $table->text('summernote');
+            $table->string('expertise_en');
+            $table->string('educaName_en');
+            $table->string('year_en');
+            $table->string('link_en');
+            $table->text('summernote_en');
+
+
+            $table->string('expertise_ar');
+            $table->string('educaName_ar');
+            $table->string('year_ar');
+            $table->string('link_ar');
+            $table->text('summernote_ar');
+
             $table->timestamps();
         });
     }

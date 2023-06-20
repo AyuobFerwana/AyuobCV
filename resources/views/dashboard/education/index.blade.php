@@ -29,15 +29,22 @@
                 </div>
             </div>
             <!-- /.card-header -->
-            <div class="card-body table-responsive p-0">
-                <table class="table table-hover text-nowrap">
+            <div class="card-body">
+                <table class="table table-bordered text-hover">
                     <thead>
                         <tr>
                             <th>ID</th>
                             <th>Expertise</th>
                             <th>Education Place</th>
+                            <th>Link</th>
                             <th>Year</th>
                             <th>Content</th>
+
+                            <th>الخبرة</th>
+                            <th>مكان التعلم</th>
+                            <th>الرابط</th>
+                            <th>السنة</th>
+                            <th>المحتوى</th>
                             <th>Setting</th>
                         </tr>
                     </thead>
@@ -46,10 +53,19 @@
 
                         <tr>
                             <td>{{ $loop->iteration }}</td>
-                            <td>{{ $educat->expertise }}</td>
-                            <td>{{ $educat->educaName }}</td>
-                            <td>{{ $educat->year }}</td>
-                            <td>{{ $educat->summernote }}</td>
+                            <td>{{ $educat->expertise_en }}</td>
+                            <td>{{ $educat->educaName_en }}</td>
+                            <td>{{ $educat->link_en }}</td>
+                            <td>{{ $educat->year_en }}</td>
+                            <td>{{ $educat->summernote_en }}</td>
+
+                            <td>{{ $educat->expertise_ar }}</td>
+                            <td>{{ $educat->educaName_ar }}</td>
+                            <td>{{ $educat->link_ar }}</td>
+                            <td>{{ $educat->year_ar }}</td>
+                            <td>{{ $educat->summernote_ar }}</td>
+
+
                             <td>
                                 <div class="btn-group">
                                     <a href="{{ route('education.edit', $educat->id) }}"

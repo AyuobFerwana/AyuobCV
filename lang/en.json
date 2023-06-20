@@ -1,3 +1,38 @@
 {
-  "name": "Ayuob Ferwana"
+    "//": "Header",
+
+    "name": "Ayuob Ferwana",
+    "home ": "Home",
+    "about": "About",
+    "skill ": "Skills",
+    "experiences ": "Experiences",
+    "portfolio ": "Portfolio",
+    "pricing ": "Pricing",
+    "blog ": "Blog",
+    "contact ": "Contact",
+
+    "//": "About",
+
+    "hello": "Hello I'm",
+    "firstName": "Ayuob Ferwana",
+    "Expertise": "Backend Programmer",
+    "aboutme": "About Me",
+    "pareg": "Hello, I’m a Ayuob, web-developer based on Paris.I have rich experience in web site design & building and customization.",
+
+    "//": "What i do",
+
+    "what": "What I do",
+    "Database": "Database Analysis",
+    "projects": "I have the ability and sufficient experience in analyzing a database, I provide excellent solutions for web projects.",
+    "web":"Web Development",
+    "laravel":" I have a strong skill set and experience in creating powerful and efficient web applications. I have deep understanding of programming languages like My SQL, JS, HTML, CSS, Node.js , PHP and Laravel.",
+    "server":"Server Management",
+    "smoothly":"Thanks to my experience and extensive knowledge in uploading web projects to servers, I can operate and maintain the web infrastructure, and I can make the website work smoothly.",
+    "Technical":"Technical Skills",
+    "Professional":"Professional Skills"
+
+
+
+
+
 }

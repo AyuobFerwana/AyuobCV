@@ -44,6 +44,13 @@
     <link rel="alternate stylesheet" href="{{ asset('cv/assets/css/colors/purple.css') }}" title="purple">
     <link rel="alternate stylesheet" href="{{ asset('cv/assets/css/colors/slate.css') }}" title="slate">
     <link rel="alternate stylesheet" href="{{ asset('cv/assets/css/colors/yellow.css') }}" title="yellow">
+    <style>
+        .mh-home .mh-header-info ul li {
+            direction: ltr;
+            margin: 10px 0;
+        }
+    </style>
+
 </head>
 
 <body class="dark-vertion black-bg">
@@ -75,40 +82,40 @@
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav mr-auto ml-auto">
                             <li class="nav-item active">
-                                <a class="nav-link" href="#mh-home">Home</a>
+                                <a class="nav-link" href="#mh-home">{{ __('home') }}</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#mh-about">About</a>
+                                <a class="nav-link" href="#mh-about">{{ __('about') }}</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#mh-skills">Skills</a>
+                                <a class="nav-link" href="#mh-skills">{{ __('skill') }}</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#mh-experience">Experiences</a>
+                                <a class="nav-link" href="#mh-experience">{{ __('experiences') }}</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#mh-portfolio">Portfolio</a>
+                                <a class="nav-link" href="#mh-portfolio">{{ __('portfolio') }}</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#mh-pricing">Pricing</a>
+                                <a class="nav-link" href="#mh-pricing">{{ __('pricing') }}</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#mh-blog">Blog</a>
+                                <a class="nav-link" href="#mh-blog">{{ __('blog') }}</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#mh-contact">Contact</a>
+                                <a class="nav-link" href="#mh-contact">{{ __('contact') }}</a>
                             </li>
                             <li class="nav-item">
                                 @php
-                                    $previousUrlFull = url()->current();
-                                    $previousUrlPath = parse_url($previousUrlFull, PHP_URL_PATH);
-                                    $previousUrlPath = substr($previousUrlPath, 3);
+                                $previousUrlFull = url()->current();
+                                $previousUrlPath = parse_url($previousUrlFull, PHP_URL_PATH);
+                                $previousUrlPath = substr($previousUrlPath, 3);
                                 @endphp
 
                                 @if (app()->isLocale('en'))
-                                    <a class="nav-link" href="/ar{{ $previousUrlPath }}">عربي</a>
+                                <a class="nav-link" href="/ar{{ $previousUrlPath }}">عربي</a>
                                 @else
-                                    <a class="nav-link" href="/en{{ $previousUrlPath }}">English</a>
+                                <a class="nav-link" href="/en{{ $previousUrlPath }}">English</a>
                                 @endif
                             </li>
                         </ul>
@@ -130,14 +137,14 @@
                     <div class="col-sm-6">
                         <div class="mh-header-info">
                             <div class="mh-promo wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.1s">
-                                <span>Hello I'm</span>
+                                <span>{{ __('hello') }}</span>
                             </div>
 
                             <h2 class="wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.2s">
-                                {{ $user->name }}
+                                {{ __('firstName') }}
                             </h2>
                             <h4 class="wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.3s">
-                                {{ $user->expertise }}</h4>
+                                {{ __('Expertise') }}</h4>
 
                             <ul>
                                 <li class="wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.4s"><i
@@ -187,11 +194,8 @@
                 </div>
                 <div class="col-sm-12 col-md-6">
                     <div class="mh-about-inner">
-                        <h2 class="wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.1s">About Me</h2>
-                        <p class="wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.2s">Hello, I’m a Patrick,
-                            web-developer based on Paris.
-                            I have rich experience in web site design & building
-                            and customization. Also I am good at</p>
+                        <h2 class="wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.1s">{{ __('aboutme') }}</h2>
+                        <p class="wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.2s">{{__('pareg')}}</p>
                         <div class="mh-about-tag wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.3s">
                             <ul>
                                 <li><span>php</span></li>
@@ -220,16 +224,15 @@
             <div class="row section-separator">
                 <div class="col-sm-12 text-center section-title wow fadeInUp" data-wow-duration="0.8s"
                     data-wow-delay="0.2s">
-                    <h2>What I do</h2>
+                    <h2>{{ __('what') }}</h2>
                 </div>
                 <div class="col-md-4 col-sm-12">
                     <div class="mh-service-item shadow-1 dark-bg wow fadeInUp" data-wow-duration="0.8s"
                         data-wow-delay="0.3s">
                         <i class="fa fa-database purple-color"></i>
-                        <h3>Database Analysis</h3>
+                        <h3>{{ __('Database') }}</h3>
                         <p>
-                            I have the ability and sufficient experience in analyzing a database, I provide excellent
-                            solutions for web projects.
+                            {{__('projects')}}
                         </p>
                     </div>
                 </div>
@@ -237,12 +240,9 @@
                     <div class="mh-service-item shadow-1 dark-bg wow fadeInUp" data-wow-duration="0.8s"
                         data-wow-delay="0.5s">
                         <i class="fa fa-code iron-color"></i>
-                        <h3>Web Development</h3>
+                        <h3>{{ __('web') }}</h3>
                         <p>
-                            I have a strong skill set and experience in creating powerful and efficient web
-                            applications. I have deep understanding of programming languages like My SQL, JS, HTML, CSS,
-                            Node.js ,
-                            PHP and Laravel.
+                            {{__('laravel')}}
                         </p>
                     </div>
                 </div>
@@ -250,11 +250,9 @@
                     <div class="mh-service-item shadow-1 dark-bg wow fadeInUp" data-wow-duration="0.8s"
                         data-wow-delay="0.7s">
                         <i class="fa fa-server sky-color"></i>
-                        <h3>Server Manegment</h3>
+                        <h3>{{ __('server') }}</h3>
                         <p>
-                            Thanks to my experience and extensive knowledge in uploading web projects to servers, I can
-                            operate and maintain the web infrastructure, and I can make the website work smoothly.
-                        </p>
+                            {{__('smoothly')}}
                     </div>
                 </div>
             </div>
@@ -274,34 +272,21 @@
                 </div>
                 <div class="col-sm-12 col-md-6">
                     <div class="mh-skills-inner">
-                        <div class="mh-professional-skill wow fadeInUp" data-wow-duration="0.8s"
-                            data-wow-delay="0.3s">
-                            <h3>Technical Skills</h3>
+                        <div class="mh-professional-skill wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.3s">
+                            <h3>{{ __('Technical') }}</h3>
                             <div class="each-skills">
-                                {{-- <div class="candidatos">
+                                @foreach ($skills->reverse() as $skill)
+                                <div class="candidatos">
                                     <div class="parcial">
                                         <div class="info">
-                                            <div class="nome">{{ $skill->name }}</div>
-                                            <div class="percentagem-num">%{{ $skill->skills }}</div>
+                                            <div class="nome">{{ $skill['name_'.app()->getLocale()] }}</div>
+                                            <div class="percentagem-num">{{ $skill->skills }}%</div>
                                         </div>
                                         <div class="progressBar">
-                                            <div class="percentagem" style="width:{{ $skill->skills }}%;"></div>
+                                            <div class="percentagem" style="width: {{ $skill->skills }}%;"></div>
                                         </div>
                                     </div>
-                                </div> --}}
-
-                                @foreach ($skills->reverse() as $skill)
-                                    <div class="candidatos">
-                                        <div class="parcial">
-                                            <div class="info">
-                                                <div class="nome">{{ $skill->name }}</div>
-                                                <div class="percentagem-num">{{ $skill->skills }}%</div>
-                                            </div>
-                                            <div class="progressBar">
-                                                <div class="percentagem" style="width: {{ $skill->skills }}%;"></div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                </div>
                                 @endforeach
                             </div>
                         </div>
@@ -309,15 +294,14 @@
                 </div>
                 <div class="col-sm-12 col-md-6">
                     <div class="mh-professional-skills wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.5s">
-                        <h3>Professional Skills</h3>
+                        <h3>{{ __('Professional') }}</h3>
                         <ul class="mh-professional-progress">
                             @foreach ($proSkills as $proSkill)
-                                <li>
-                                    <div class="mh-progress mh-progress-circle"
-                                        data-progress="{{ $proSkill->skills }}">
-                                    </div>
-                                    <div class="pr-skill-name">{{ $proSkill->name }}</div>
-                                </li>
+                            <li>
+                                <div class="mh-progress mh-progress-circle" data-progress="{{ $proSkill->skills }}">
+                                </div>
+                                <div class="pr-skill-name">{{ $proSkill['name_'.app()->getLocale()] }}</div>
+                            </li>
                             @endforeach
                         </ul>
                     </div>
@@ -341,13 +325,12 @@
                             <div class="mh-education-deatils">
                                 <!-- Education Institutes-->
                                 @foreach ($education as $educat)
-                                    <div class="mh-education-item dark-bg wow fadeInUp" data-wow-duration="0.8s"
-                                        data-wow-delay="0.3s">
-                                        <h4>{{ $educat->expertise }} <a
-                                                href="{{ $educat->link }}">{{ $educat->educaName }}</a></h4>
-                                        <div class="mh-eduyear">{{ $educat->year }}</div>
-                                        <p>{!! $educat->summernote !!} </p>
-                                    </div>
+                                <div class="mh-education-item dark-bg wow fadeInUp" data-wow-duration="0.8s"
+                                    data-wow-delay="0.3s">
+                                    <h4>{{ $educat['expertise_'.app()->getLocale()] }} <a href="{{ $educat['link_'.app()->getLocale()] }}">{{ $educat['educaName_'.app()->getLocale()]}}</a></h4>
+                                    <div class="mh-eduyear">{{ $educat['year_'.app()->getLocale()] }}</div>
+                                    <p>{!! $educat['summernote_'.app()->getLocale()] !!} </p>
+                                </div>
                                 @endforeach
                                 <!-- Education Institutes-->
                             </div>
@@ -420,14 +403,13 @@
                                 data-wow-delay="0.3s"><span>Branding</span></li>
                             <li data-filter=".mockup" class="wow fadeInUp" data-wow-duration="0.8s"
                                 data-wow-delay="0.4s"><span>Mockups</span></li>
-                            <li data-filter=".ui" class="wow fadeInUp" data-wow-duration="0.8s"
-                                data-wow-delay="0.5s">
+                            <li data-filter=".ui" class="wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.5s">
                                 <span>Photography</span>
                             </li>
                         </ul>
                     </div>
-                    <div class="mh-project-gallery col-sm-12 wow fadeInUp" id="project-gallery"
-                        data-wow-duration="0.8s" data-wow-delay="0.5s">
+                    <div class="mh-project-gallery col-sm-12 wow fadeInUp" id="project-gallery" data-wow-duration="0.8s"
+                        data-wow-delay="0.5s">
                         <div class="portfolioContainer row">
                             <div class="grid-item col-md-4 col-sm-6 col-xs-12 user-interface">
                                 <figure>
@@ -776,19 +758,20 @@
 
 
                                 <div class="col-md-6 col-sm-12">
-                                    <input name="name" class="contact-name form-control" id="name"
-                                        type="text" placeholder="First Name">
+                                    <input name="name" class="contact-name form-control" id="name" type="text"
+                                        placeholder="First Name">
                                 </div>
                                 <div class="col-md-6 col-sm-12">
-                                    <input name="name" class="contact-email form-control" id="L_name"
-                                        type="text" placeholder="Last Name">
+                                    <input name="name" class="contact-email form-control" id="L_name" type="text"
+                                        placeholder="Last Name">
                                 </div>
                                 <div class="col-sm-12">
-                                    <input name="name" class="contact-subject form-control" id="email"
-                                        type="email" placeholder="Your Email">
+                                    <input name="name" class="contact-subject form-control" id="email" type="email"
+                                        placeholder="Your Email">
                                 </div>
                                 <div class="col-sm-12">
-                                    <textarea class="contact-message" id="message" rows="6" placeholder="Your Message"></textarea>
+                                    <textarea class="contact-message" id="message" rows="6"
+                                        placeholder="Your Message"></textarea>
                                 </div>
 
                                 <div class="btn-form col-sm-12">
@@ -913,12 +896,12 @@
                     <h4>Style One </h4>
                     <ul>
                         <li>
-                            <a href="home-one.html"> <img src="{{ asset('cv/assets/images/h1w.png') }}"
-                                    alt="" class="img-fluid"></a>
+                            <a href="home-one.html"> <img src="{{ asset('cv/assets/images/h1w.png') }}" alt=""
+                                    class="img-fluid"></a>
                         </li>
                         <li>
-                            <a href="home-one-w.html"> <img src="{{ asset('cv/assets/images/h1.png') }}"
-                                    alt="" class="img-fluid"></a>
+                            <a href="home-one-w.html"> <img src="{{ asset('cv/assets/images/h1.png') }}" alt=""
+                                    class="img-fluid"></a>
                         </li>
                     </ul>
                 </li>
@@ -926,12 +909,12 @@
                     <h4>Style Two </h4>
                     <ul>
                         <li>
-                            <a href="home-two.html"> <img src="{{ asset('cv/assets/images/h2w.png') }}"
-                                    alt="" class="img-fluid"></a>
+                            <a href="home-two.html"> <img src="{{ asset('cv/assets/images/h2w.png') }}" alt=""
+                                    class="img-fluid"></a>
                         </li>
                         <li>
-                            <a href="home-two-w.html"> <img src="{{ asset('cv/assets/images/h2.png') }}"
-                                    alt="" class="img-fluid"></a>
+                            <a href="home-two-w.html"> <img src="{{ asset('cv/assets/images/h2.png') }}" alt=""
+                                    class="img-fluid"></a>
                         </li>
                     </ul>
                 </li>
@@ -940,12 +923,12 @@
                     <h4>RTl</h4>
                     <ul>
                         <li>
-                            <a href="home-rtl.html"> <img src="{{ asset('cv/assets/images/h3w.png') }}"
-                                    alt="" class="img-fluid"></a>
+                            <a href="home-rtl.html"> <img src="{{ asset('cv/assets/images/h3w.png') }}" alt=""
+                                    class="img-fluid"></a>
                         </li>
                         <li>
-                            <a href="home-rtl-w.html"> <img src="{{ asset('cv/assets/images/h3.png') }}"
-                                    alt="" class="img-fluid"></a>
+                            <a href="home-rtl-w.html"> <img src="{{ asset('cv/assets/images/h3.png') }}" alt=""
+                                    class="img-fluid"></a>
                         </li>
                     </ul>
                 </li>
@@ -962,8 +945,7 @@
                         <div class="purple"></div>
                     </a>
                 </li>
-                <li><a href="#" onclick="setActiveStyleSheet('blue-munsell'); return false;"
-                        title="Blue Munsell">
+                <li><a href="#" onclick="setActiveStyleSheet('blue-munsell'); return false;" title="Blue Munsell">
                         <div class="blue-munsell"></div>
                     </a>
                 </li>

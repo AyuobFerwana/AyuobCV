@@ -32,22 +32,40 @@ class EducationController extends Controller
     public function store(Request $request)
     {
         $validator = Validator($request->all(), [
-            'expertise' => 'required|string|min:3|max:50',
-            'educaName' => 'required|string|min:3|max:50',
-            'year' => 'required|string|min:3|max:50',
-            'link' => 'required|string|min:3|max:5000',
-            'summernote' => 'required|string|min:10|max:900',
+            'expertise_en' => 'required|string|min:3|max:50',
+            'educaName_en' => 'required|string|min:3|max:50',
+            'year_en' => 'required|string|min:3|max:50',
+            'link_en' => 'required|string|min:3|max:5000',
+            'summernote_en' => 'required|string|min:10',
+
+
+            'expertise_ar' => 'required|string|min:3|max:50',
+            'educaName_ar' => 'required|string|min:3|max:50',
+            'year_ar' => 'required|string|min:3|max:50',
+            'link_ar' => 'required|string|min:3|max:5000',
+            'summernote_ar' => 'required|string|min:10',
+
+
         ]);
         if (!$validator->fails()) {
             $educat = new Education();
-            $educat->expertise = $request->input('expertise');
-            $educat->educaName = $request->input('educaName');
-            $educat->year = $request->input('year');
-            $educat->link = $request->input('link');
-            $educat->summernote = $request->input('summernote');
+            $educat->expertise_en = $request->input('expertise_en');
+            $educat->educaName_en = $request->input('educaName_en');
+            $educat->year_en = $request->input('year_en');
+            $educat->link_en = $request->input('link_en');
+            $educat->summernote_en = $request->input('summernote_en');
+
+
+            $educat->expertise_ar = $request->input('expertise_ar');
+            $educat->educaName_ar = $request->input('educaName_ar');
+            $educat->year_ar = $request->input('year_ar');
+            $educat->link_ar = $request->input('link_ar');
+            $educat->summernote_ar = $request->input('summernote_ar');
+
+
             $isSaved = $educat->save();
             return response()->json([
-                'message' => $isSaved ? 'Create educat Successfully' : 'Create educat Failed'
+                'message' => $isSaved ? 'Create Education Successfully' : 'Create Education Failed'
             ], $isSaved ? Response::HTTP_OK : Response::HTTP_BAD_REQUEST);
         } else {
             return response()->json([
@@ -80,22 +98,38 @@ class EducationController extends Controller
     public function update(Request $request, Education $educat, $id)
     {
         $validator = Validator($request->all(), [
-            'expertise' => 'required|string|min:3|max:50',
-            'educaName' => 'required|string|min:3|max:50',
-            'year' => 'required|string|min:3|max:50',
-            'link' => 'required|string|min:3|max:5000',
-            'summernote' => 'required|string|min:10|max:900',
+            'expertise_en' => 'required|string|min:3|max:50',
+            'educaName_en' => 'required|string|min:3|max:50',
+            'year_en' => 'required|string|min:3|max:50',
+            'link_en' => 'required|string|min:3|max:5000',
+            'summernote_en' => 'required|string|min:10',
+
+            // arabic
+            'expertise_ar' => 'required|string|min:3|max:50',
+            'educaName_ar' => 'required|string|min:3|max:50',
+            'year_ar' => 'required|string|min:3|max:50',
+            'link_ar' => 'required|string|min:3|max:5000',
+            'summernote_ar' => 'required|string|min:10'
+
         ]);
         if (!$validator->fails()) {
             $educat = Education::findOrFail($id);
-            $educat->expertise = $request->input('expertise');
-            $educat->educaName = $request->input('educaName');
-            $educat->year = $request->input('year');
-            $educat->link = $request->input('link');
-            $educat->summernote = $request->input('summernote');
+            $educat->expertise_en = $request->input('expertise_en');
+            $educat->educaName_en = $request->input('educaName_en');
+            $educat->year_en = $request->input('year_en');
+            $educat->link_en = $request->input('link_en');
+            $educat->summernote_en = $request->input('summernote_en');
+
+            // arabic
+            $educat->expertise_ar = $request->input('expertise_ar');
+            $educat->educaName_ar = $request->input('educaName_ar');
+            $educat->year_ar = $request->input('year_ar');
+            $educat->link_ar= $request->input('link_ar');
+            $educat->summernote_ar = $request->input('summernote_ar');
+
             $isSaved = $educat->save();
             return response()->json([
-                'message' => $isSaved ? 'Update educat Successfully' : 'Update educat Failed'
+                'message' => $isSaved ? 'Update Education Successfully' : 'Update Education Failed'
             ], $isSaved ? Response::HTTP_OK : Response::HTTP_BAD_REQUEST);
         } else {
             return response()->json([
