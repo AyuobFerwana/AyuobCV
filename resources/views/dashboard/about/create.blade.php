@@ -54,29 +54,78 @@
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
-                        {{-- About --}}
-                        <label for="About">About me</label>
+                       {{-- Admin Name --}}
+                       <label for="Admin">Admin Name</label>
+
+                       <input type="text" class="form-control" id="AdminNA_en" placeholder="AdminNA">
+                       <br>
+
+                       <label for="Admin">أسم المسؤل </label>
+
+                       <input type="text" class="form-control" id="AdminNA_ar" placeholder="أسم المسؤل">
+                       <br>
+
+
+                        {{-- Expertise --}}
+                        <label for="Expertise">Expertise</label>
+
+                        <input type="text" class="form-control" id="expertise_en" placeholder="Expertise">
                         <br>
+
+                        <label for="Expertise">الخبرات</label>
+
+                        <input type="text" class="form-control" id="expertise_ar" placeholder="الخبرات">
+                        <br>
+
+
+                        <label for="Address">Address</label>
+
+                        <input type="text" class="form-control" id="address" placeholder="Address">
+                        <br>
+
+
+                        <label for="Address">Address</label>
+
+                        <input type="text" class="form-control" id="address" placeholder="Address">
+                        <br>
+
 
                         <div class="form-group">
                             <label for="programming">Programming languages</label>
                             <input type="text" class="form-control" id="program" data-role="tagsinput"
                                 placeholder="Programming">
                         </div>
+                        
 
 
                         <div class="form-group">
                             <label for="exampleInputFile">File input</label>
                             <div class="input-group">
                                 <div class="custom-file">
-                                    <input type="file" class="custom-file-input" id="exampleInputFile">
-                                    <label class="custom-file-label" for="exampleInputFile">Choose file</label>
+                                    <input type="file" class="custom-file-input" id="file">
+                                    <label class="custom-file-label" for="file">Choose file</label>
                                 </div>
                                 <div class="input-group-append">
                                     <span class="input-group-text">Upload</span>
                                 </div>
                             </div>
                         </div>
+
+                        <div class="form-group">
+                            <label for="exampleInputFile">Image</label>
+                            <div class="input-group">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" id="image">
+                                    <label class="custom-file-label" for="image">Choose file</label>
+                                </div>
+                                <div class="input-group-append">
+                                    <span class="input-group-text">Upload</span>
+                                </div>
+                            </div>
+                        </div>
+
+
+
                     </div>
 
                     <div class="card-footer">
