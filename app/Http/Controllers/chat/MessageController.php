@@ -18,7 +18,7 @@ class MessageController extends Controller
     {
     }
 
-    public function chatForm(StoreMessageRequest $request, Message $chat)
+    public function chatForm(StoreMessageRequest $request)
     {
         $created = $this->service->createMessage($request->validated());
         return $created ? parent::successResponse() : parent::errorResponse();
