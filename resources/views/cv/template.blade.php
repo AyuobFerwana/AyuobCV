@@ -45,9 +45,16 @@
     <link rel="alternate stylesheet" href="{{ asset('cv/assets/css/colors/slate.css') }}" title="slate">
     <link rel="alternate stylesheet" href="{{ asset('cv/assets/css/colors/yellow.css') }}" title="yellow">
     <style>
+        /* about */
         .mh-home .mh-header-info ul li {
             direction: ltr;
             margin: 10px 0;
+        }
+
+
+        .mh-work .mh-experience-deatils .mh-work-item:last-child {
+            direction: ltr;
+            margin-bottom: 0;
         }
     </style>
 
@@ -98,9 +105,6 @@
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="#mh-pricing">{{ __('pricing') }}</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#mh-blog">{{ __('blog') }}</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="#mh-contact">{{ __('contact') }}</a>
@@ -321,13 +325,16 @@
                 <div class="row section-separator">
                     <div class="col-sm-12 col-md-6">
                         <div class="mh-education">
-                            <h3 class="wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.2s">Education</h3>
+                            <h3 class="wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.2s">{{ __('educat') }}
+                            </h3>
                             <div class="mh-education-deatils">
                                 <!-- Education Institutes-->
                                 @foreach ($education as $educat)
                                 <div class="mh-education-item dark-bg wow fadeInUp" data-wow-duration="0.8s"
                                     data-wow-delay="0.3s">
-                                    <h4>{{ $educat['expertise_'.app()->getLocale()] }} <a href="{{ $educat['link_'.app()->getLocale()] }}">{{ $educat['educaName_'.app()->getLocale()]}}</a></h4>
+                                    <h4>{{ $educat['expertise_'.app()->getLocale()] }} <a
+                                            href="{{ $educat['link_'.app()->getLocale()] }}">{{
+                                            $educat['educaName_'.app()->getLocale()]}}</a></h4>
                                     <div class="mh-eduyear">{{ $educat['year_'.app()->getLocale()] }}</div>
                                     <p>{!! $educat['summernote_'.app()->getLocale()] !!} </p>
                                 </div>
@@ -338,39 +345,17 @@
                     </div>
                     <div class="col-sm-12 col-md-6">
                         <div class="mh-work">
-                            <h3>Work Experience</h3>
+                            <h3>{{ __('work') }}</h3>
                             <div class="mh-experience-deatils">
                                 <!-- Education Institutes-->
                                 <div class="mh-work-item dark-bg wow fadeInUp" data-wow-duration="0.8s"
                                     data-wow-delay="0.4s">
-                                    <h4>UI/UX Designer <a href="#">IronSketch</a></h4>
-                                    <div class="mh-eduyear">2005-2008</div>
+                                    <h4>PHP Laravel <a href="#">New Line</a></h4>
+                                    <div class="mh-eduyear">2023</div>
                                     <span>Responsibility :</span>
                                     <ul class="work-responsibility">
-                                        <li><i class="fa fa-circle"></i>Validate CSS</li>
-                                        <li><i class="fa fa-circle"></i>Project Management</li>
-                                    </ul>
-                                </div>
-                                <!-- Education Institutes-->
-                                <div class="mh-work-item dark-bg wow fadeInUp" data-wow-duration="0.8s"
-                                    data-wow-delay="0.6s">
-                                    <h4>Art & Multimedia From <a href="#">Oxford University</a></h4>
-                                    <div class="mh-eduyear">2005-2008</div>
-                                    <span>Responsibility :</span>
-                                    <ul class="work-responsibility">
-                                        <li><i class="fa fa-circle"></i>Validate CSS</li>
-                                        <li><i class="fa fa-circle"></i>Project Management</li>
-                                    </ul>
-                                </div>
-                                <!-- Education Institutes-->
-                                <div class="mh-work-item dark-bg wow fadeInUp" data-wow-duration="0.8s"
-                                    data-wow-delay="0.7s">
-                                    <h4>Art & Multimedia From <a href="#">Oxford University</a></h4>
-                                    <div class="mh-eduyear">2005-2008</div>
-                                    <span>Responsibility :</span>
-                                    <ul class="work-responsibility">
-                                        <li><i class="fa fa-circle"></i>Validate CSS</li>
-                                        <li><i class="fa fa-circle"></i>Project Management</li>
+                                        <li><i class="fa fa-circle"></i>Database Manegment</li>
+                                        <li><i class="fa fa-circle"></i>PHP</li>
                                     </ul>
                                 </div>
                             </div>
@@ -390,25 +375,22 @@
         <div class="container">
             <div class="row section-separator">
                 <div class="section-title col-sm-12 wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.1s">
-                    <h3>Recent Portfolio</h3>
+                    <h3>{{ __('Recent') }}</h3>
                 </div>
                 <div class="part col-sm-12">
                     <div class="portfolio-nav col-sm-12" id="filter-button">
                         <ul>
                             <li data-filter="*" class="current wow fadeInUp" data-wow-duration="0.8s"
-                                data-wow-delay="0.1s"> <span>All Categories</span></li>
+                                data-wow-delay="0.1s"> <span>{{ __('category') }}</span></li>
+
                             <li data-filter=".user-interface" class="wow fadeInUp" data-wow-duration="0.8s"
-                                data-wow-delay="0.2s"><span>Web Design</span></li>
+                                data-wow-delay="0.2s"><span>{{ __('phpLaravel') }}</span></li>
+
                             <li data-filter=".branding" class="wow fadeInUp" data-wow-duration="0.8s"
-                                data-wow-delay="0.3s"><span>Branding</span></li>
-                            <li data-filter=".mockup" class="wow fadeInUp" data-wow-duration="0.8s"
-                                data-wow-delay="0.4s"><span>Mockups</span></li>
-                            <li data-filter=".ui" class="wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.5s">
-                                <span>Photography</span>
-                            </li>
+                                data-wow-delay="0.3s"><span>{{ __('node.js') }}</span></li>
                         </ul>
                     </div>
-                    <div class="mh-project-gallery col-sm-12 wow fadeInUp" id="project-gallery" data-wow-duration="0.8s"
+                    {{-- <div class="mh-project-gallery col-sm-12 wow fadeInUp" id="project-gallery" data-wow-duration="0.8s"
                         data-wow-delay="0.5s">
                         <div class="portfolioContainer row">
                             <div class="grid-item col-md-4 col-sm-6 col-xs-12 user-interface">
@@ -519,7 +501,7 @@
                                 </figure>
                             </div>
                         </div> <!-- End: .grid .project-gallery -->
-                    </div> <!-- End: .grid .project-gallery -->
+                    </div> <!-- End: .grid .project-gallery --> --}}
                 </div> <!-- End: .part -->
             </div> <!-- End: .row -->
         </div>
@@ -577,20 +559,22 @@
             <div class="container">
                 <div class="row section-separator">
                     <div class="col-sm-12 section-title" data-wow-duration="0.8s" data-wow-delay="0.2s">
-                        <h3>Pricing Table</h3>
+                        <h3>{{ __('price') }}</h3>
                     </div>
                     <div class="col-sm-12 col-md-4">
                         <div class="mh-pricing dark-bg shadow-2 wow fadeInUp" data-wow-duration="0.8s"
                             data-wow-delay="0.3s">
                             <i class="fa fa-calendar"></i>
-                            <h4>Full-time work</h4>
-                            <p>I am available for full time</p>
+                            <h4>{{ __('full') }}</h4>
+                            <p>{{ __('available') }}</p>
                             <h5>$1500</h5>
                             <ul>
-                                <li>Web Development</li>
-                                <li>Advetising</li>
-                                <li>Game Development</li>
-                                <li>Music Writing</li>
+                                <li>{{ __('deve') }}</li>
+                                <li>{{ __('langu') }}</li>
+                                <li>{{ __('node') }}</li>
+                                <li>{{ __('data') }}</li>
+                                <li>{{ __('ser') }}</li>
+
                             </ul>
                             <a href="#" class="btn btn-fill">Hire Me</a>
                         </div>
@@ -598,15 +582,17 @@
                     <div class="col-sm-12 col-md-4">
                         <div class="mh-pricing dark-bg shadow-2 wow fadeInUp" data-wow-duration="0.8s"
                             data-wow-delay="0.5s">
-                            <i class="fa fa-file"></i>
-                            <h4>Fixed Price Project</h4>
-                            <p>I am available for fixed roles</p>
+                            <i class="fa fa-wrench"></i>
+                            <h4>{{ __('fixed') }}</h4>
+                            <p>{{ __('fixedavailable') }}</p>
                             <h5>$500</h5>
                             <ul>
-                                <li>Web Development</li>
-                                <li>Advetising</li>
-                                <li>Game Development</li>
-                                <li>Music Writing</li>
+                                <li>{{ __('deve') }}</li>
+                                <li>{{ __('langu') }}</li>
+                                <li>{{ __('node') }}</li>
+                                <li>{{ __('data') }}</li>
+                                <li>{{ __('ser') }}</li>
+
                             </ul>
                             <a href="#" class="btn btn-fill">Hire Me</a>
                         </div>
@@ -615,14 +601,15 @@
                         <div class="mh-pricing dark-bg shadow-2 wow fadeInUp" data-wow-duration="0.8s"
                             data-wow-delay="0.7s">
                             <i class="fa fa-hourglass"></i>
-                            <h4>Hourley work</h4>
-                            <p>I am available for Hourley projets</p>
+                            <h4>{{ __('hourley') }}</h4>
+                            <p>{{ __('hourWork') }}</p>
                             <h5>$50</h5>
                             <ul>
-                                <li>Web Development</li>
-                                <li>Advetising</li>
-                                <li>Game Development</li>
-                                <li>Music Writing</li>
+                                <li>{{ __('deve') }}</li>
+                                <li>{{ __('langu') }}</li>
+                                <li>{{ __('node') }}</li>
+                                <li>{{ __('data') }}</li>
+                                <li>{{ __('ser') }}</li>
                             </ul>
                             <a href="#" class="btn btn-fill">Hire Me</a>
                         </div>
@@ -641,9 +628,9 @@
         <div class="container">
             <div class="row section-separator">
                 <div class="col-sm-12 section-title wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.2s">
-                    <h3>Featured Posts</h3>
+                    <h3>{{ __('Featured') }}</h3>
                 </div>
-                <div class="col-sm-12 col-md-4">
+                {{-- <div class="col-sm-12 col-md-4">
                     <div class="mh-blog-item dark-bg wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.3s">
                         <img src="{{ asset('cv/assets/images/b-3.png') }}" alt="" class="img-fluid">
                         <div class="blog-inner">
@@ -693,7 +680,7 @@
                             <a href="blog-single.html">Read More</a>
                         </div>
                     </div>
-                </div>
+                </div> --}}
             </div>
         </div>
     </section>
@@ -705,7 +692,7 @@
             <div class="container">
                 <div class="row section-separator">
                     <div class="col-sm-12 section-title wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.2s">
-                        <h3>Contact Me</h3>
+                        <h3>{{ __('Contact') }}</h3>
                     </div>
                     <div class="col-sm-12 mh-footer-address">
                         <div class="row">
@@ -716,7 +703,7 @@
                                         <i class="fa fa-location-arrow"></i>
                                     </div>
                                     <div class="each-info">
-                                        <h4>Address</h4>
+                                        <h4>{{ __('Address') }}</h4>
                                         <address>
                                             {{ $user->address }}
                                         </address>
@@ -730,7 +717,7 @@
                                         <i class="fa fa-envelope-o"></i>
                                     </div>
                                     <div class="each-info">
-                                        <h4>Email</h4>
+                                        <h4>{{ __('Email') }}</h4>
                                         <a href="https://mail.google.com/mail/u/4/#inbox">{{ $user->email }}</a>
                                     </div>
                                 </div>
@@ -742,7 +729,7 @@
                                         <i class="fa fa-phone"></i>
                                     </div>
                                     <div class="each-info">
-                                        <h4>Phone</h4>
+                                        <h4>{{ __('Phone') }}</h4>
                                         <a href="callto:(880)-8976-987">{{ $user->phone }}</a>
                                     </div>
                                 </div>
@@ -759,53 +746,48 @@
 
                                 <div class="col-md-6 col-sm-12">
                                     <input name="name" class="contact-name form-control" id="name" type="text"
-                                        placeholder="First Name">
+                                        placeholder="{{ __('FirstNa') }}">
                                 </div>
+
                                 <div class="col-md-6 col-sm-12">
                                     <input name="name" class="contact-email form-control" id="L_name" type="text"
-                                        placeholder="Last Name">
+                                        placeholder="{{ __('LastNa') }}">
                                 </div>
+
                                 <div class="col-sm-12">
                                     <input name="name" class="contact-subject form-control" id="email" type="email"
-                                        placeholder="Your Email">
+                                        placeholder="{{ __('yourEmail') }}">
                                 </div>
+
                                 <div class="col-sm-12">
                                     <textarea class="contact-message" id="message" rows="6"
-                                        placeholder="Your Message"></textarea>
+                                        placeholder="{{ __('Yourmess') }}"></textarea>
                                 </div>
 
                                 <div class="btn-form col-sm-12">
-                                    <button type="submit" class="btn btn-fill btn-block" id="form-submit">Send
-                                        Message</button>
+                                    <button type="submit" class="btn btn-fill btn-block" id="form-submit">{{__('SendMes')}}</button>
                                 </div>
 
 
                             </div>
                         </form>
                     </div>
-                    <div class="col-sm-12 mh-copyright wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.3s">
-                        <div class="row justify-content-center">
-                            <!-- Added justify-content-center class -->
-                            <div class="col-sm-6">
-                                <div class="text-left text-xs-right">
-                                    <!-- Modified class name -->
-                                    <p><a href="#">Ayuob Ferwana</a></p>
-                                </div>
-                            </div>
-                            <div class="col-sm-6">
-                                <ul class="social-icon">
-                                    <li><a href="https://www.facebook.com/profile.php?id=100006618018904"><i
-                                                class="fa fa-facebook"></i></a></li>
-                                    <li><a href="https://github.com/AyuobFerwana"><i class="fa fa-github"></i></a>
-                                    </li>
-                                    <li><a href="https://www.linkedin.com/in/ayuob-ferwana-aa742127a/"><i
-                                                class="fa fa-linkedin"></i></a></li>
-                                    <li><a href="https://twitter.com/ayuobnasser23"><i class="fa fa-twitter"></i></a>
-                                    </li>
-                                </ul>
-                            </div>
+                    <div class="col-sm-12 mh-copyright wow fadeInUp" style="text-align: center; visibility: visible; animation-duration: 0.8s; animation-delay: 0.3s; animation-name: fadeInUp;" data-wow-duration="0.8s" data-wow-delay="0.3s">
+                        <div class="row">
+                        <div class="col-sm-12">
+                            <ul class="social-icon">
+                                <li><a href="https://www.facebook.com/profile.php?id=100006618018904"><i
+                                            class="fa fa-facebook"></i></a></li>
+                                <li><a href="https://github.com/AyuobFerwana"><i class="fa fa-github"></i></a>
+                                </li>
+                                <li><a href="https://www.linkedin.com/in/ayuob-ferwana-aa742127a/"><i
+                                            class="fa fa-linkedin"></i></a></li>
+                                <li><a href="https://twitter.com/ayuobnasser23"><i class="fa fa-twitter"></i></a>
+                                </li>
+                            </ul>
                         </div>
-                    </div>
+                        </div>
+                        </div>
                 </div>
             </div>
         </div>
@@ -848,7 +830,7 @@
 
     {{-- Chat / Message --}}
 
-    <script>
+    {{-- <script>
         document.getElementById('form').addEventListener('submit', function(event) {
             event.preventDefault();
             let formData = new FormData();
@@ -879,7 +861,7 @@
         channel.bind('new-submission', function(data) {
             toastr.info('New form submission received');
         });
-    </script>
+    </script> --}}
     <!-- ****************
       After neccessary customization/modification, Please minify
       JavaScript/jQuery according to http://browserdiet.com/en/ for better performance

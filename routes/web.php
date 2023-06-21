@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AboutController;
+use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\UserController;
 use App\Http\Controllers\chat\MessageController;
 use App\Http\Controllers\ProSkillController;
@@ -32,3 +33,14 @@ Route::post('/chat' , [MessageController::class , 'chatForm'])->name('chatForm')
 
 // about
 Route::resource('about' , AboutController::class);
+
+
+Route::middleware(['guest','throttle:auth'])->group(function(){
+    Route::view('/dashboard/login', 'auth.login')->name('login');
+    Route::post('/login',[LoginController::class,'login'])->name('login.post');
+});
+
+
+Route::middleware('auth')->group(function(){
+    Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
+});

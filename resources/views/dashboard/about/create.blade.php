@@ -4,6 +4,39 @@
 
 @section('style')
 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tagsinput/0.8.0/bootstrap-tagsinput.css">
+<style>
+    .bootstrap-tagsinput {
+        width: 100%;
+        height: auto;
+        min-height: calc(2.25rem + 2px);
+        padding: .375rem .75rem;
+        font-size: 1rem;
+        font-weight: 400;
+        line-height: 1.5;
+        color: #495057;
+        background-color: #293954; /* Change to your desired background color */
+        background-clip: padding-box;
+        border: 1px solid #575a78; /* Change to your desired border color */
+        border-radius: .25rem;
+        transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+    }
+
+    .bootstrap-tagsinput input {
+        width: 100%;
+        height: calc(2.25rem + 2px);
+        padding: .375rem .75rem;
+        font-size: 1rem;
+        font-weight: 400;
+        line-height: 1.5;
+        color: #033567;
+        background-color: #d6f7ff; /* Change to your desired input background color */
+        background-clip: padding-box;
+        border: 1px solid #3091b9; /* Change to your desired input border color */
+        border-radius: .25rem;
+        transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+    }
+</style>
 
 @endsection
 
@@ -23,15 +56,14 @@
                     <div class="card-body">
                         {{-- About --}}
                         <label for="About">About me</label>
-
-                        <div class="js-tag-editor tag-editor multi-line s-input"
-                            style="padding: 0px 9.1px; box-sizing: border-box; margin-top: 0px; margin-bottom: 0px; width: 100%;">
-                            <span></span><input type="text" autocomplete="off" tabindex="0" aria-autocomplete="list"
-                                aria-haspopup="listbox" role="combobox" aria-expanded="false"
-                                placeholder="javascript, java, c#, php, jquery, python, android, ios"
-                                id="tageditor-replacing-fav-tags--input" class="s-input js-tageditor-replacing"
-                                style="width: 19px;"><span></span></div>
                         <br>
+
+                        <div class="form-group">
+                            <label for="programming">Programming languages</label>
+                            <input type="text" class="form-control" id="program" data-role="tagsinput"
+                                placeholder="Programming">
+                        </div>
+
 
                         <div class="form-group">
                             <label for="exampleInputFile">File input</label>
@@ -64,12 +96,45 @@
 @endsection
 
 @section('script')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/typeahead.js/0.11.1/typeahead.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tagsinput/0.8.0/bootstrap-tagsinput.min.js"></script>
+
 <script src="{{ asset('dash/plugins/summernote/summernote-bs4.min.js') }}"></script>
 <script>
     $(function () {
         $('#summernote').summernote();
     });
 </script>
+
+<script>
+    $(document).ready(function() {
+        var programmerData = new Bloodhound({
+            datumTokenizer: Bloodhound.tokenizers.obj.whitespace('language'),
+            queryTokenizer: Bloodhound.tokenizers.whitespace,
+            local: [
+                { language: 'JavaScript' },
+                { language: 'Python' },
+                { language: 'Java' },
+                { language: 'C#' },
+                { language: 'Ruby' },
+                // Add more programming languages as needed
+            ]
+        });
+        programmerData.initialize();
+
+        $('#program').tagsinput({
+            typeaheadjs: {
+                name: 'programmerdata',
+                displayKey: 'language',
+                valueKey: 'language',
+                source: programmerData.ttAdapter()
+            }
+        });
+    });
+</script>
+
+
 
 <script>
     document.getElementById('form').addEventListener('submit', function(event) {
