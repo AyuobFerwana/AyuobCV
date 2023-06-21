@@ -47,7 +47,8 @@
             <!-- Left navbar links -->
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+                    <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i
+                            class="fas fa-bars"></i></a>
                 </li>
                 <li class="nav-item d-none d-sm-inline-block">
                     <a href="{{ route('home') }}" class="nav-link">Home</a>
@@ -163,12 +164,12 @@
 
                         <li class="nav-item">
                             <a href="{{ route('about.create') }}" class="nav-link">
-                              <i class="fas fa-address-card"></i>
-                              <p>
-                                About me
-                              </p>
+                                <i class="fas fa-address-card"></i>
+                                <p>
+                                    About me
+                                </p>
                             </a>
-                          </li>
+                        </li>
 
 
                         <li class="nav-header">Technical Skills & Professional Skills
@@ -177,57 +178,57 @@
 
                         <li class="nav-item">
                             <a href="{{ route('user.create') }}" class="nav-link">
-                              {{-- <i class="nav-icon far fa-image"></i> --}}
-                              <i class="fas fa-code-branch"></i>
-                              <p>
-                                 Skills
-                              </p>
+                                {{-- <i class="nav-icon far fa-image"></i> --}}
+                                <i class="fas fa-code-branch"></i>
+                                <p>
+                                    Skills
+                                </p>
                             </a>
-                          </li>
+                        </li>
 
-                          <li class="nav-item">
+                        <li class="nav-item">
                             <a href="{{ route('professional.create') }}" class="nav-link">
-                              {{-- <i class="nav-icon far fa-image"></i> --}}
-                              <i class="fas fa-code-branch"></i>
-                              <p>
-                                Professional Skills
-                              </p>
+                                {{-- <i class="nav-icon far fa-image"></i> --}}
+                                <i class="fas fa-code-branch"></i>
+                                <p>
+                                    Professional Skills
+                                </p>
                             </a>
-                          </li>
+                        </li>
 
-                          <li class="nav-header">Education & Work Experience </li>
+                        <li class="nav-header">Education & Work Experience </li>
 
 
-                          <li class="nav-item">
+                        <li class="nav-item">
                             <a href="{{ route('education.create') }}" class="nav-link">
-                              <i class="fas fa-laptop-house"></i>
-                              <p>
-                                Education
-                              </p>
+                                <i class="fas fa-laptop-house"></i>
+                                <p>
+                                    Education
+                                </p>
                             </a>
-                          </li>
+                        </li>
 
 
-                          <li class="nav-item">
+                        <li class="nav-item">
                             <a href="{{ route('cv.show') }}" class="nav-link">
-                              <i class="fas fa-copyright"></i>
-                              <p>
-                                CV
-                              </p>
+                                <i class="fas fa-copyright"></i>
+                                <p>
+                                    CV
+                                </p>
                             </a>
-                          </li>
+                        </li>
 
 
 
 
-                          <li class="nav-item">
+                        <li class="nav-item">
                             <a href="{{ route('logout') }}" class="nav-link">
-                              <i class="fas fa-sign-out-alt"></i>
-                              <p>
-                               Logout
-                              </p>
+                                <i class="fas fa-sign-out-alt"></i>
+                                <p>
+                                    Logout
+                                </p>
                             </a>
-                          </li>
+                        </li>
 
 
                     </ul>
@@ -311,6 +312,17 @@
     <script src="{{ asset('js/axios.js') }}"></script>
     <script src="{{ asset('js/sweet.js') }}"></script>
     <script src="{{ asset('js/Crud.js') }}"></script>
+
+    <script src="{{ asset('build-assets/assets/app-4ed993c7.js') }}"></script>
+    <script src="{{ asset('build-assets/assets/app-b7dd7a56.js') }}"></script>
+
+    <script>
+        Echo.private(`App.Models.User.{{auth()->user()->id}}`)
+            .notification((notification) => {
+                toastr.warning(notification.message);
+            });
+    </script>
+
     @yield('script')
 
 </body>

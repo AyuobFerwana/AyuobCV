@@ -1,6 +1,6 @@
 <!doctype html>
 
-<html lang="{{app()->getLocale()}}" dir="{{app()->isLocale('en') ? 'ltr' : 'rtl'}}">
+<html lang="{{ app()->getLocale() }}" dir="{{ app()->isLocale('en') ? 'ltr' : 'rtl' }}">
 
 <head>
     <title> {{ __('name') }} </title>
@@ -44,6 +44,7 @@
     <link rel="alternate stylesheet" href="{{ asset('cv/assets/css/colors/purple.css') }}" title="purple">
     <link rel="alternate stylesheet" href="{{ asset('cv/assets/css/colors/slate.css') }}" title="slate">
     <link rel="alternate stylesheet" href="{{ asset('cv/assets/css/colors/yellow.css') }}" title="yellow">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
     <style>
         /* about */
         .mh-home .mh-header-info ul li {
@@ -111,15 +112,15 @@
                             </li>
                             <li class="nav-item">
                                 @php
-                                $previousUrlFull = url()->current();
-                                $previousUrlPath = parse_url($previousUrlFull, PHP_URL_PATH);
-                                $previousUrlPath = substr($previousUrlPath, 3);
+                                    $previousUrlFull = url()->current();
+                                    $previousUrlPath = parse_url($previousUrlFull, PHP_URL_PATH);
+                                    $previousUrlPath = substr($previousUrlPath, 3);
                                 @endphp
 
                                 @if (app()->isLocale('en'))
-                                <a class="nav-link" href="/ar{{ $previousUrlPath }}">عربي</a>
+                                    <a class="nav-link" href="/ar{{ $previousUrlPath }}">عربي</a>
                                 @else
-                                <a class="nav-link" href="/en{{ $previousUrlPath }}">English</a>
+                                    <a class="nav-link" href="/en{{ $previousUrlPath }}">English</a>
                                 @endif
                             </li>
                         </ul>
@@ -198,8 +199,10 @@
                 </div>
                 <div class="col-sm-12 col-md-6">
                     <div class="mh-about-inner">
-                        <h2 class="wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.1s">{{ __('aboutme') }}</h2>
-                        <p class="wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.2s">{{__('pareg')}}</p>
+                        <h2 class="wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.1s">{{ __('aboutme') }}
+                        </h2>
+                        <p class="wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.2s">{{ __('pareg') }}
+                        </p>
                         <div class="mh-about-tag wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.3s">
                             <ul>
                                 <li><span>php</span></li>
@@ -236,7 +239,7 @@
                         <i class="fa fa-database purple-color"></i>
                         <h3>{{ __('Database') }}</h3>
                         <p>
-                            {{__('projects')}}
+                            {{ __('projects') }}
                         </p>
                     </div>
                 </div>
@@ -246,7 +249,7 @@
                         <i class="fa fa-code iron-color"></i>
                         <h3>{{ __('web') }}</h3>
                         <p>
-                            {{__('laravel')}}
+                            {{ __('laravel') }}
                         </p>
                     </div>
                 </div>
@@ -256,7 +259,7 @@
                         <i class="fa fa-server sky-color"></i>
                         <h3>{{ __('server') }}</h3>
                         <p>
-                            {{__('smoothly')}}
+                            {{ __('smoothly') }}
                     </div>
                 </div>
             </div>
@@ -276,21 +279,22 @@
                 </div>
                 <div class="col-sm-12 col-md-6">
                     <div class="mh-skills-inner">
-                        <div class="mh-professional-skill wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.3s">
+                        <div class="mh-professional-skill wow fadeInUp" data-wow-duration="0.8s"
+                            data-wow-delay="0.3s">
                             <h3>{{ __('Technical') }}</h3>
                             <div class="each-skills">
                                 @foreach ($skills->reverse() as $skill)
-                                <div class="candidatos">
-                                    <div class="parcial">
-                                        <div class="info">
-                                            <div class="nome">{{ $skill['name_'.app()->getLocale()] }}</div>
-                                            <div class="percentagem-num">{{ $skill->skills }}%</div>
-                                        </div>
-                                        <div class="progressBar">
-                                            <div class="percentagem" style="width: {{ $skill->skills }}%;"></div>
+                                    <div class="candidatos">
+                                        <div class="parcial">
+                                            <div class="info">
+                                                <div class="nome">{{ $skill['name_' . app()->getLocale()] }}</div>
+                                                <div class="percentagem-num">{{ $skill->skills }}%</div>
+                                            </div>
+                                            <div class="progressBar">
+                                                <div class="percentagem" style="width: {{ $skill->skills }}%;"></div>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
                                 @endforeach
                             </div>
                         </div>
@@ -301,11 +305,12 @@
                         <h3>{{ __('Professional') }}</h3>
                         <ul class="mh-professional-progress">
                             @foreach ($proSkills as $proSkill)
-                            <li>
-                                <div class="mh-progress mh-progress-circle" data-progress="{{ $proSkill->skills }}">
-                                </div>
-                                <div class="pr-skill-name">{{ $proSkill['name_'.app()->getLocale()] }}</div>
-                            </li>
+                                <li>
+                                    <div class="mh-progress mh-progress-circle"
+                                        data-progress="{{ $proSkill->skills }}">
+                                    </div>
+                                    <div class="pr-skill-name">{{ $proSkill['name_' . app()->getLocale()] }}</div>
+                                </li>
                             @endforeach
                         </ul>
                     </div>
@@ -325,19 +330,20 @@
                 <div class="row section-separator">
                     <div class="col-sm-12 col-md-6">
                         <div class="mh-education">
-                            <h3 class="wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.2s">{{ __('educat') }}
+                            <h3 class="wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.2s">
+                                {{ __('educat') }}
                             </h3>
                             <div class="mh-education-deatils">
                                 <!-- Education Institutes-->
                                 @foreach ($education as $educat)
-                                <div class="mh-education-item dark-bg wow fadeInUp" data-wow-duration="0.8s"
-                                    data-wow-delay="0.3s">
-                                    <h4>{{ $educat['expertise_'.app()->getLocale()] }} <a
-                                            href="{{ $educat['link_'.app()->getLocale()] }}">{{
-                                            $educat['educaName_'.app()->getLocale()]}}</a></h4>
-                                    <div class="mh-eduyear">{{ $educat['year_'.app()->getLocale()] }}</div>
-                                    <p>{!! $educat['summernote_'.app()->getLocale()] !!} </p>
-                                </div>
+                                    <div class="mh-education-item dark-bg wow fadeInUp" data-wow-duration="0.8s"
+                                        data-wow-delay="0.3s">
+                                        <h4>{{ $educat['expertise_' . app()->getLocale()] }} <a
+                                                href="{{ $educat['link_' . app()->getLocale()] }}">{{ $educat['educaName_' . app()->getLocale()] }}</a>
+                                        </h4>
+                                        <div class="mh-eduyear">{{ $educat['year_' . app()->getLocale()] }}</div>
+                                        <p>{!! $educat['summernote_' . app()->getLocale()] !!} </p>
+                                    </div>
                                 @endforeach
                                 <!-- Education Institutes-->
                             </div>
@@ -745,49 +751,52 @@
 
 
                                 <div class="col-md-6 col-sm-12">
-                                    <input name="name" class="contact-name form-control" id="name" type="text"
-                                        placeholder="{{ __('FirstNa') }}">
+                                    <input name="first_name" class="contact-name form-control" id="name"
+                                        type="text" placeholder="{{ __('FirstNa') }}">
                                 </div>
 
                                 <div class="col-md-6 col-sm-12">
-                                    <input name="name" class="contact-email form-control" id="L_name" type="text"
-                                        placeholder="{{ __('LastNa') }}">
+                                    <input name="last_name" class="contact-email form-control" id="L_name"
+                                        type="text" placeholder="{{ __('LastNa') }}">
                                 </div>
 
                                 <div class="col-sm-12">
-                                    <input name="name" class="contact-subject form-control" id="email" type="email"
-                                        placeholder="{{ __('yourEmail') }}">
+                                    <input name="email" class="contact-subject form-control" id="email"
+                                        type="email" placeholder="{{ __('yourEmail') }}">
                                 </div>
 
                                 <div class="col-sm-12">
-                                    <textarea class="contact-message" id="message" rows="6"
+                                    <textarea name="message" class="contact-message" id="message" rows="6"
                                         placeholder="{{ __('Yourmess') }}"></textarea>
                                 </div>
 
                                 <div class="btn-form col-sm-12">
-                                    <button type="submit" class="btn btn-fill btn-block" id="form-submit">{{__('SendMes')}}</button>
+                                    <button type="submit" class="btn btn-fill btn-block"
+                                        id="form-submit">{{ __('SendMes') }}</button>
                                 </div>
 
 
                             </div>
                         </form>
                     </div>
-                    <div class="col-sm-12 mh-copyright wow fadeInUp" style="text-align: center; visibility: visible; animation-duration: 0.8s; animation-delay: 0.3s; animation-name: fadeInUp;" data-wow-duration="0.8s" data-wow-delay="0.3s">
+                    <div class="col-sm-12 mh-copyright wow fadeInUp"
+                        style="text-align: center; visibility: visible; animation-duration: 0.8s; animation-delay: 0.3s; animation-name: fadeInUp;"
+                        data-wow-duration="0.8s" data-wow-delay="0.3s">
                         <div class="row">
-                        <div class="col-sm-12">
-                            <ul class="social-icon">
-                                <li><a href="https://www.facebook.com/profile.php?id=100006618018904"><i
-                                            class="fa fa-facebook"></i></a></li>
-                                <li><a href="https://github.com/AyuobFerwana"><i class="fa fa-github"></i></a>
-                                </li>
-                                <li><a href="https://www.linkedin.com/in/ayuob-ferwana-aa742127a/"><i
-                                            class="fa fa-linkedin"></i></a></li>
-                                <li><a href="https://twitter.com/ayuobnasser23"><i class="fa fa-twitter"></i></a>
-                                </li>
-                            </ul>
+                            <div class="col-sm-12">
+                                <ul class="social-icon">
+                                    <li><a href="https://www.facebook.com/profile.php?id=100006618018904"><i
+                                                class="fa fa-facebook"></i></a></li>
+                                    <li><a href="https://github.com/AyuobFerwana"><i class="fa fa-github"></i></a>
+                                    </li>
+                                    <li><a href="https://www.linkedin.com/in/ayuob-ferwana-aa742127a/"><i
+                                                class="fa fa-linkedin"></i></a></li>
+                                    <li><a href="https://twitter.com/ayuobnasser23"><i class="fa fa-twitter"></i></a>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
-                        </div>
-                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -828,7 +837,29 @@
     <!-- Custom Scripts-->
     <script src="{{ asset('cv/assets/js/custom-scripts.js') }}"></script>
 
+    <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
     {{-- Chat / Message --}}
+
+    <script>
+        document.getElementById('form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            let myForm = document.getElementById('form');
+            let formData = new FormData(myForm);
+
+            axios.post('{{ route('chatForm') }}', formData)
+                .then(function(response) {
+                    toastr.success(response.data.message);
+                    console.log(response);
+                    myForm.reset();
+                })
+                .catch(function(error) {
+                    toastr.error(error.response.data.message);
+                    console.log(error);
+                });
+        });
+    </script>
 
     {{-- <script>
         document.getElementById('form').addEventListener('submit', function(event) {
@@ -878,12 +909,12 @@
                     <h4>Style One </h4>
                     <ul>
                         <li>
-                            <a href="home-one.html"> <img src="{{ asset('cv/assets/images/h1w.png') }}" alt=""
-                                    class="img-fluid"></a>
+                            <a href="home-one.html"> <img src="{{ asset('cv/assets/images/h1w.png') }}"
+                                    alt="" class="img-fluid"></a>
                         </li>
                         <li>
-                            <a href="home-one-w.html"> <img src="{{ asset('cv/assets/images/h1.png') }}" alt=""
-                                    class="img-fluid"></a>
+                            <a href="home-one-w.html"> <img src="{{ asset('cv/assets/images/h1.png') }}"
+                                    alt="" class="img-fluid"></a>
                         </li>
                     </ul>
                 </li>
@@ -891,12 +922,12 @@
                     <h4>Style Two </h4>
                     <ul>
                         <li>
-                            <a href="home-two.html"> <img src="{{ asset('cv/assets/images/h2w.png') }}" alt=""
-                                    class="img-fluid"></a>
+                            <a href="home-two.html"> <img src="{{ asset('cv/assets/images/h2w.png') }}"
+                                    alt="" class="img-fluid"></a>
                         </li>
                         <li>
-                            <a href="home-two-w.html"> <img src="{{ asset('cv/assets/images/h2.png') }}" alt=""
-                                    class="img-fluid"></a>
+                            <a href="home-two-w.html"> <img src="{{ asset('cv/assets/images/h2.png') }}"
+                                    alt="" class="img-fluid"></a>
                         </li>
                     </ul>
                 </li>
@@ -905,12 +936,12 @@
                     <h4>RTl</h4>
                     <ul>
                         <li>
-                            <a href="home-rtl.html"> <img src="{{ asset('cv/assets/images/h3w.png') }}" alt=""
-                                    class="img-fluid"></a>
+                            <a href="home-rtl.html"> <img src="{{ asset('cv/assets/images/h3w.png') }}"
+                                    alt="" class="img-fluid"></a>
                         </li>
                         <li>
-                            <a href="home-rtl-w.html"> <img src="{{ asset('cv/assets/images/h3.png') }}" alt=""
-                                    class="img-fluid"></a>
+                            <a href="home-rtl-w.html"> <img src="{{ asset('cv/assets/images/h3.png') }}"
+                                    alt="" class="img-fluid"></a>
                         </li>
                     </ul>
                 </li>
@@ -927,7 +958,8 @@
                         <div class="purple"></div>
                     </a>
                 </li>
-                <li><a href="#" onclick="setActiveStyleSheet('blue-munsell'); return false;" title="Blue Munsell">
+                <li><a href="#" onclick="setActiveStyleSheet('blue-munsell'); return false;"
+                        title="Blue Munsell">
                         <div class="blue-munsell"></div>
                     </a>
                 </li>
