@@ -278,6 +278,9 @@
     </div>
     <!-- ./wrapper -->
 
+    <script src="{{ asset('build-assets/assets/app-4ed993c7.js') }}"></script>
+    <script src="{{ asset('build-assets/assets/app-b7dd7a56.js') }}"></script>
+
     <!-- jQuery -->
     <script src="{{ asset('dash/plugins/jquery/jquery.min.js') }}"></script>
     <!-- jQuery UI 1.11.4 -->
@@ -312,8 +315,7 @@
     <script src="{{ asset('js/sweet.js') }}"></script>
     <script src="{{ asset('js/Crud.js') }}"></script>
 
-    <script src="{{ asset('build-assets/assets/app-4ed993c7.js') }}"></script>
-    <script src="{{ asset('build-assets/assets/app-b7dd7a56.js') }}"></script>
+    
 
     <script>
         Echo.private(`App.Models.User.{{auth()->user()->id}}`)
