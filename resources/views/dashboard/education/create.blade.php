@@ -4,7 +4,6 @@
 
 @section('style')
 
-
 @endsection
 
 @section('content')
@@ -59,20 +58,25 @@
 
                         {{-- Content --}}
                         <label for="Content"> Content </label>
-                        <textarea id="summernote_en" name="summernote" placeholder="Place some text here">
-                            Put some text here
-                        </textarea>
+                        <div class="card-body">
+                            <textarea id="summernote_en" name="summernote_en" placeholder="Enter Some Text Here">
 
+                            </textarea>
+                        </div>
+                        <br>
                         <label for="Content"> المحتوى </label>
-                        <textarea id="summernote_ar" name="summernote" placeholder="Place some text here">ضع بعض النص هنا</textarea>
+                        <div class="card-body">
+                            <textarea id="summernote_ar" name="summernote_ar"
+                                placeholder="ضع بعض النص هنا">   </textarea>
 
+                        </div>
                     </div>
 
 
                     <div class="card-footer">
                         <button type="submit" class="btn btn-info">Create</button>
 
-                        Create Education To CV  || Go to The Index here
+                        Create Education To CV || Go to The Index here
                         <a href="{{ route('education.index') }}" class="btn btn-warning">index</a>
 
                     </div>
@@ -86,7 +90,6 @@
 @endsection
 
 @section('script')
-<script src="{{ asset('dash/plugins/summernote/summernote-bs4.min.js') }}"></script>
 <script>
     $(function () {
         $('#summernote_en').summernote();

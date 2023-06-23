@@ -40,8 +40,11 @@ class RouteServiceProvider extends ServiceProvider
                 ->group(base_path('routes/web.php'));
         });
 
-        RateLimiter::for('auth', function(Request $request){
+
+        RateLimiter::for('authentication' ,function(Request $request){
             return Limit::perMinute(5);
         });
+
     }
-}
+    }
+

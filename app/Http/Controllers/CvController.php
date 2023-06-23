@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\About;
 use App\Models\Education;
 use App\Models\ProSkill;
 use App\Models\Skill;
@@ -12,10 +13,10 @@ class CvController extends Controller
 {
     public function show()
     {
-        $user = User::first();
+        $about = About::first();
         $skills = Skill::all();
         $proSkills = ProSkill::all();
         $education = Education::all();
-        return response()->view('cv.template', compact('user', 'skills', 'proSkills' , 'education'));
+        return response()->view('cv.template', compact('about', 'skills', 'proSkills' , 'education'));
     }
 }

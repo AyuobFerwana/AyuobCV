@@ -1,6 +1,6 @@
 @extends('dashboard.parent')
 
-@section('title' , 'Education Index')
+@section('title' , 'About Index')
 
 
 @section('style')
@@ -14,7 +14,7 @@
     <div class="col-12">
         <div class="card">
             <div class="card-header">
-                <h3 class="card-title">Education Index</h3>
+                <h3 class="card-title">About Index</h3>
 
                 <div class="card-tools">
                     <div class="input-group input-group-sm" style="width: 150px;">
@@ -34,29 +34,44 @@
                     <thead>
                         <tr>
                             <th>ID</th>
-                            <th>Expertise</th>
-                            <th>Education Place</th>
-                            <th>Year</th>
-                            <th>Content</th>
+                            <th>Super_EN</th>
+                            <th>Super_AR</th>
+                            <th>Expertise_EN</th>
+                            <th>Expertise_AR</th>
+                            <th>Address</th>
+                            <th>Phone</th>
+                            <th>Email</th>
+                            <th>Program</th>
+                            <th>File</th>
+                            <th>Image</th>
                             <th>Setting</th>
+
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($education as $educat)
+                        @foreach ($abouts as $about)
 
                         <tr>
                             <td>{{ $loop->iteration }}</td>
-                            <td>{{ $educat->expertise }}</td>
-                            <td>{{ $educat->educaName }}</td>
-                            <td>{{ $educat->year }}</td>
-                            <td>{{ $educat->summernote }}</td>
+                            <td>{{ $about->super_en }}</td>
+                            <td>{{ $about->super_ar }}</td>
+                            <td>{{ $about->expertise_en }}</td>
+                            <td>{{ $about->expertise_ar }}</td>
+                            <td>{{ $about->address }}</td>
+                            <td>{{ $about->phone }}</td>
+                            <td>{{ $about->email }}</td>
+                            <td>{{ $about->program }}</td>
+                            <td>{{ $about->file }}</td>
+                            <td>{{ $about->image }}</td>
+
+
                             <td>
                                 <div class="btn-group">
-                                    <a href="{{ route('education.edit', $educat->id) }}"
+                                    <a href="{{ route('about.edit', $about->id) }}"
                                         class="btn btn-square btn-outline-success m-2 border-rad">
                                         <i class="fas fa-edit"></i>
                                     </a>
-                                    <button type="button" onclick="performDestroy('{{ $educat->id }}', this)"
+                                    <button type="button" onclick="performDestroy('{{ $about->id }}', this)"
                                         class="btn btn-square btn-outline-danger m-2 border-rad">
                                         <i class="fas fa-trash"></i>
                                     </button>
@@ -83,7 +98,7 @@
 {{-- Delete --}}
 <script>
     function performDestroy(id, reference) {
-        confirmDestroy('/education', id, reference);
+        confirmDestroy('/dashboard/about', id, reference);
     }
 </script>
 

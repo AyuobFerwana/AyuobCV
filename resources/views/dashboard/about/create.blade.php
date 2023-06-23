@@ -57,52 +57,57 @@
                        {{-- Admin Name --}}
                        <label for="Admin">Admin Name</label>
 
-                       <input type="text" class="form-control" id="AdminNA_en" placeholder="AdminNA">
+                       <input type="text"  name="super_en" class="form-control" id="super_en" placeholder="AdminNA">
                        <br>
 
                        <label for="Admin">أسم المسؤل </label>
 
-                       <input type="text" class="form-control" id="AdminNA_ar" placeholder="أسم المسؤل">
+                       <input type="text"  name="super_ar" class="form-control" id="super_ar" placeholder="أسم المسؤل">
                        <br>
 
 
                         {{-- Expertise --}}
                         <label for="Expertise">Expertise</label>
 
-                        <input type="text" class="form-control" id="expertise_en" placeholder="Expertise">
+                        <input type="text" name="expertise_en" class="form-control" id="expertise_en" placeholder="Expertise">
                         <br>
 
                         <label for="Expertise">الخبرات</label>
 
-                        <input type="text" class="form-control" id="expertise_ar" placeholder="الخبرات">
+                        <input type="text" name="expertise_ar" class="form-control" id="expertise_ar" placeholder="الخبرات">
                         <br>
 
 
                         <label for="Address">Address</label>
 
-                        <input type="text" class="form-control" id="address" placeholder="Address">
+                        <input type="text" name="address" class="form-control" id="address" placeholder="Address">
+                        <br>
+
+                        <label for="Phone">Phone</label>
+
+                        <input type="text" name="phone" class="form-control" id="phone" placeholder="phone">
                         <br>
 
 
-                        <label for="Address">Address</label>
+                        <label for="Email">Email</label>
 
-                        <input type="text" class="form-control" id="address" placeholder="Address">
+                        <input type="text" name="email" class="form-control" id="email" placeholder="email@example.com">
                         <br>
 
 
                         <div class="form-group">
                             <label for="programming">Programming languages</label>
-                            <input type="text" class="form-control" id="program" data-role="tagsinput"
+                            <input type="text" name="program" class="form-control" id="program" data-role="tagsinput"
                                 placeholder="Programming">
                         </div>
-                        
+
 
 
                         <div class="form-group">
                             <label for="exampleInputFile">File input</label>
                             <div class="input-group">
                                 <div class="custom-file">
-                                    <input type="file" class="custom-file-input" id="file">
+                                    <input type="file" name="file" class="custom-file-input" id="file">
                                     <label class="custom-file-label" for="file">Choose file</label>
                                 </div>
                                 <div class="input-group-append">
@@ -115,8 +120,8 @@
                             <label for="exampleInputFile">Image</label>
                             <div class="input-group">
                                 <div class="custom-file">
-                                    <input type="file" class="custom-file-input" id="image">
-                                    <label class="custom-file-label" for="image">Choose file</label>
+                                    <input type="file" name="image" class="custom-file-input" id="image">
+                                    <label class="custom-file-label" for="image">Choose Image</label>
                                 </div>
                                 <div class="input-group-append">
                                     <span class="input-group-text">Upload</span>
@@ -131,8 +136,8 @@
                     <div class="card-footer">
                         <button type="submit" class="btn btn-info">Create</button>
 
-                        Create Education To CV || Go to The Index here
-                        <a href="{{ route('education.index') }}" class="btn btn-warning">index</a>
+                        Create About To CV || Go to The Index here
+                        <a href="{{ route('about.index') }}" class="btn btn-warning">index</a>
 
                     </div>
                 </form>
@@ -149,12 +154,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/typeahead.js/0.11.1/typeahead.bundle.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tagsinput/0.8.0/bootstrap-tagsinput.min.js"></script>
 
-<script src="{{ asset('dash/plugins/summernote/summernote-bs4.min.js') }}"></script>
-<script>
-    $(function () {
-        $('#summernote').summernote();
-    });
-</script>
 
 <script>
     $(document).ready(function() {
@@ -181,21 +180,17 @@
             }
         });
     });
+
 </script>
-
-
 
 <script>
     document.getElementById('form').addEventListener('submit', function(event) {
        event.preventDefault();
-       let formData = new FormData();
-       formData.append('expertise', document.getElementById('expertise').value);
-       formData.append('educaName', document.getElementById('educaName').value);
-       formData.append('year', document.getElementById('year').value);
-       formData.append('link', document.getElementById('link').value);
 
-       formData.append('summernote', document.getElementById('summernote').value);
-       axios.post('{{ route('education.store') }}', formData)
+       let aboutForm = document.getElementById('form');
+       let formData = new FormData(aboutForm);
+
+       axios.post('{{ route('about.store') }}', formData)
            .then(function(response) {
                toastr.success(response.data.message);
                console.log(response);

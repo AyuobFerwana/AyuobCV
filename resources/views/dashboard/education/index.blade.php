@@ -99,7 +99,7 @@
 {{-- Delete --}}
 <script>
     function performDestroy(id, reference) {
-        confirmDestroy('/education', id, reference);
+        confirmDestroy('/dashboard/education', id, reference);
     }
 </script>
 

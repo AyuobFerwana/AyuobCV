@@ -146,19 +146,19 @@
                             </div>
 
                             <h2 class="wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.2s">
-                                {{ __('firstName') }}
+                                {{ $about['super_' . app()->getLocale()] }}
                             </h2>
                             <h4 class="wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.3s">
-                                {{ __('Expertise') }}</h4>
+                                {{ $about['expertise_' . app()->getLocale()] }}</h4>
 
                             <ul>
                                 <li class="wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.4s"><i
-                                        class="fa fa-envelope"></i><a href="mailto:">{{ $user->email }}</a></li>
+                                        class="fa fa-envelope"></i><a href="mailto:">{{ $about->email }}</a></li>
                                 <li class="wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.5s"><i
-                                        class="fa fa-phone"></i><a href="callto:">+972 {{ $user->phone }}</a></li>
+                                        class="fa fa-phone"></i><a href="callto:">+972 {{ $about->phone }}</a></li>
                                 <li class="wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.6s"><i
                                         class="fa fa-map-marker"></i>
-                                    <address>{{ $user->address }}</address>
+                                    <address>{{ $about->address }}</address>
                                 </li>
                             </ul>
 
@@ -175,7 +175,7 @@
                     <div class="col-sm-6">
                         <div class="hero-img wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.6s">
                             <div class="img-border">
-                                <img src="{{ $user->image }}" alt="" class="img-fluid">
+                                <img src="{{ Storage::url($about->image) }}" alt="" class="img-fluid">
                             </div>
                         </div>
                     </div>
@@ -205,14 +205,13 @@
                         </p>
                         <div class="mh-about-tag wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.3s">
                             <ul>
-                                <li><span>php</span></li>
-                                <li><span> php Laravel </span></li>
-                                <li><span>html</span></li>
-                                <li><span>css</span></li>
-                                <li><span>Javascript</span></li>
+                                @foreach (explode(',',$about->program) as $program )
+
+                                <li><span>{{ $program }}</span></li>
+                                    @endforeach
                             </ul>
                         </div>
-                        <a href="{{ asset('cv/AyuobFerwanaCV.pdf') }}" class="btn btn-fill wow fadeInUp"
+                        <a href="{{ Storage::url($about->file) }}" class="btn btn-fill wow fadeInUp"
                             data-wow-duration="0.8s" data-wow-delay="0.4s">Downlaod CV <i
                                 class="fa fa-download"></i></a>
                     </div>
@@ -711,7 +710,7 @@
                                     <div class="each-info">
                                         <h4>{{ __('Address') }}</h4>
                                         <address>
-                                            {{ $user->address }}
+                                            {{ $about->address }}
                                         </address>
                                     </div>
                                 </div>
@@ -724,7 +723,7 @@
                                     </div>
                                     <div class="each-info">
                                         <h4>{{ __('Email') }}</h4>
-                                        <a href="https://mail.google.com/mail/u/4/#inbox">{{ $user->email }}</a>
+                                        <a href="https://mail.google.com/mail/u/4/#inbox">{{ $about->email }}</a>
                                     </div>
                                 </div>
                             </div>
@@ -736,7 +735,7 @@
                                     </div>
                                     <div class="each-info">
                                         <h4>{{ __('Phone') }}</h4>
-                                        <a href="callto:(880)-8976-987">{{ $user->phone }}</a>
+                                        <a href="callto:(880)-8976-987">{{ $about->phone }}</a>
                                     </div>
                                 </div>
                             </div>
@@ -861,42 +860,6 @@
         });
     </script>
 
-    {{-- <script>
-        document.getElementById('form').addEventListener('submit', function(event) {
-            event.preventDefault();
-            let formData = new FormData();
-            formData.append('name', document.getElementById('name').value);
-            formData.append('L_name', document.getElementById('L_name').value);
-            formData.append('email', document.getElementById('email').value);
-            formData.append('message', document.getElementById('message').value);
-            axios.post('{{ route('chatForm') }}', formData)
-                .then(function(response) {
-                    toastr.success(response.data.message);
-                    console.log(response);
-                    document.getElementById('form');
-                })
-                .catch(function(error) {
-                    toastr.error(error.response.data.message);
-                    console.log(error);
-                });
-        });
-
-        // Initialize Pusher
-        var pusher = new Pusher('{{ env('PUSHER_APP_KEY') }}', {
-            cluster: '{{ env('PUSHER_APP_CLUSTER') }}',
-            encrypted: true
-        });
-
-        // Subscribe to the channel and bind to the event
-        var channel = pusher.subscribe('form-submissions');
-        channel.bind('new-submission', function(data) {
-            toastr.info('New form submission received');
-        });
-    </script> --}}
-    <!-- ****************
-      After neccessary customization/modification, Please minify
-      JavaScript/jQuery according to http://browserdiet.com/en/ for better performance
-    **************** -->
     <!-- STYLE SWITCH STYLESHEET ONLY FOR DEMO -->
     <link rel="stylesheet" href="{{ asset('cv/demo/demo.css') }}">
     <script type="text/javascript" src="{{ asset('cv/demo/styleswitcher.js') }}"></script>

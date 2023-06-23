@@ -18,29 +18,37 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-Route::redirect('/', app()->getLocale().'/ayuobferwana')->name('cv.show');
-Route::middleware('locale')->prefix('{locale}')->group(function() {
-  Route::get('/ayuobferwana' , 'CvController@show');
-});
 
-Route::view('/dashboard', 'dashboard.parent')->name('home');
-Route::resource('/user', UserController::class);
-Route::resource('/professional',ProSkillController::class);
-Route::resource('/education' , EducationController::class);
-
-// chat
-Route::post('/chat' , [MessageController::class , 'chatForm'])->name('chatForm');
-
-// about
-Route::resource('about' , AboutController::class);
-
-
-Route::middleware(['guest','throttle:auth'])->group(function(){
-    Route::view('/dashboard/login', 'auth.login')->name('login');
-    Route::post('/login',[LoginController::class,'login'])->name('login.post');
-});
-
-
-Route::middleware('auth')->group(function(){
+// Logout
+Route::middleware('auth')->group(function () {
     Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 });
+
+
+
+// CV
+Route::redirect('/', app()->getLocale() . '/ayuobferwana')->name('cv.show');
+Route::middleware('locale')->prefix('{locale}')->group(function () {
+    Route::get('/ayuobferwana', 'CvController@show');
+});
+
+// chat
+Route::post('/chat', [MessageController::class, 'chatForm'])->name('chatForm');
+
+// dashboard
+Route::middleware('auth')->prefix('dashboard')->group(function () {
+    Route::view('/', 'dashboard.parent')->name('home');
+    Route::resource('/user', UserController::class);
+    Route::resource('/professional', ProSkillController::class);
+    Route::resource('/education', EducationController::class);
+    // about
+    Route::resource('/about', AboutController::class);
+});
+
+// login
+Route::middleware(['guest', 'throttle:authentication'])->group(function () {
+    Route::view('/dashboard/login', 'auth.login')->name('login');
+    Route::post('/login', [LoginController::class, 'login'])->name('login.post');
+});
+
+

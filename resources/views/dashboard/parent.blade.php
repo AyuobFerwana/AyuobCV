@@ -6,9 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>CV | @yield('title')</title>
 
-    <!-- Google Font: Source Sans Pro -->
-    <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="{{ asset('dash/plugins/fontawesome-free/css/all.min.css') }}">
     <!-- Ionicons -->
@@ -29,6 +26,8 @@
     <!-- summernote -->
     <link rel="stylesheet" href="{{ asset('dash/plugins/summernote/summernote-bs4.min.css') }}">
     <link rel="stylesheet" href="{{ asset('js/toastr/toastr.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('dash/plugins/fontawesome-free/css/all.min.css') }}">
+
 
     @yield('style')
 </head>
@@ -322,6 +321,7 @@
                 toastr.warning(notification.message);
             });
     </script>
+
 
     @yield('script')
 

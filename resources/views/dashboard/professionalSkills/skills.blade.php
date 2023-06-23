@@ -181,7 +181,7 @@ skills.addEventListener('input', function() {
 {{-- Delete --}}
 <script>
     function performDestroy(id, reference) {
-        confirmDestroy('/professional', id, reference);
+        confirmDestroy('/dashboard/professional', id, reference);
     }
 </script>
 

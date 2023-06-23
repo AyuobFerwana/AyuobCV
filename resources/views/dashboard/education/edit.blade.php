@@ -44,11 +44,11 @@
 
                         {{-- link --}}
                         <label for="Link">Link</label>
-                        <input type="text" class="form-control" value="{{ $educat->Link_en }}" id="Link_en"
+                        <input type="text" class="form-control" value="{{ $educat->link_en }}" id="link_en"
                             placeholder="Link"><br>
 
                         <label for="Link">الرابط</label>
-                        <input type="text" class="form-control" value="{{ $educat->Link_ar }}" id="Link_ar"
+                        <input type="text" class="form-control" value="{{ $educat->link_ar }}" id="link_ar"
                             placeholder="الرابط"><br>
 
                         <label for="Year">Year</label>
@@ -100,8 +100,8 @@
        formData.append('_method' , 'PUT');
        formData.append('expertise_en', document.getElementById('expertise_en').value);
        formData.append('educaName_en', document.getElementById('educaName_en').value);
-       formData.append('link_en', document.getElementById('link_en').value);
        formData.append('year_en', document.getElementById('year_en').value);
+       formData.append('link_en', document.getElementById('link_en').value);
        formData.append('summernote_en', document.getElementById('summernote_en').value);
 
        formData.append('expertise_ar', document.getElementById('expertise_ar').value);
@@ -117,7 +117,7 @@
                document.getElementById('form');
                setTimeout(function(){
                    window.location.href='{{ route('education.create') }}';
-               }, 2000);
+               }, 1000);
            })
            .catch(function(error) {
                toastr.error(error.response.data.message);
