@@ -52,13 +52,8 @@
             </div>
         </div>
     </div>
-</section>
 
 
-{{-- Index --}}
-<section class="content">
-    <div class="container-fluid">
-        <div class="row">
             <div class="col-md-6 offset-md-6" style="position: relative; top: -309px;">
                 <div class="card">
                     <div class="card-header">
@@ -100,7 +95,7 @@
                                         <div class="progress progress-xs">
                                             @if ($skill->skills < 50)
                                             <div class="progress-bar progress-bar-danger" style="width: {{ $skill->skills }}%"></div>
-                                           @elseif($skill->skills >= 50 && $skill->skills < 70)
+                                           @elseif($skill->skills >= 50 && $skill->skills < 80)
                                            <div class="progress-bar bg-warning" style="width: {{ $skill->skills }}%"></div>
                                             @else
                                             <div class="progress-bar bg-success" style="width: {{ $skill->skills }}%"></div>
@@ -110,7 +105,7 @@
                                     <td>
                                         @if ($skill->skills < 50)
                                         <span class="badge bg-danger">%{{ $skill->skills }}</span>
-                                        @elseif($skill->skills >= 50 && $skill->skills < 70)
+                                        @elseif($skill->skills >= 50 && $skill->skills < 80)
                                         <span class="badge bg-warning">%{{ $skill->skills }}</span>
                                         @else
                                         <span class="badge bg-success">%{{ $skill->skills }}</span>
@@ -158,6 +153,10 @@
             toastr.success(response.data.message);
             console.log(response);
             document.getElementById('form').reset();
+            setTimeout(() => {
+
+                window.location.href="{{ route('professional.create') }}"
+            }, 600);
         })
         .catch(function(error) {
             toastr.error(error.response.data.message);

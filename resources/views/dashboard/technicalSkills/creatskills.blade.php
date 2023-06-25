@@ -1,5 +1,5 @@
 @extends('dashboard.parent')
-@section('title', 'Skills')
+@section('title', 'Technical Skills')
 
 @section('style')
 
@@ -14,7 +14,7 @@
             <div class="col-sm-6">
                 <div class="card card-secondary">
                     <div class="card-header">
-                        <h3 class="card-title">Skills Range</h3>
+                        <h3 class="card-title">Technical Skills Range</h3>
                     </div>
                     <div class="card-body">
                         <form id="form">
@@ -51,15 +51,9 @@
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
-</section>
 
 
-{{-- Index --}}
-<section class="content">
-    <div class="container-fluid">
-        <div class="row">
+            {{-- Index --}}
             <div class="col-md-6 offset-md-6" style="position: relative; top: -309px;">
                 <div class="card">
                     <div class="card-header">
@@ -77,67 +71,70 @@
                     <!-- /.card-header -->
                     <div class="card-body p-0">
                         <div style="display: flex; justify-content: center;">
-                        <table class="table float-right">
-                            <!-- Added 'float-right' class -->
-                            <thead>
-                                <tr>
-                                    <th style="width: 10px">ID</th>
-                                    <th>Skills</th>
-                                    <th>المهارات</th>
+                            <table class="table float-right">
+                                <!-- Added 'float-right' class -->
+                                <thead>
+                                    <tr>
+                                        <th style="width: 10px">ID</th>
+                                        <th>Skills</th>
+                                        <th>المهارات</th>
 
-                                    <th>Progress</th>
-                                    <th style="width: 40px">Label</th>
-                                    <th style="width: 91px">Setting</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach ($skills as $skill)
-                                <tr>
-                                    <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $skill->name_en }}</td>
-                                    <td>{{ $skill->name_ar}}</td>
+                                        <th>Progress</th>
+                                        <th style="width: 40px">Label</th>
+                                        <th style="width: 91px">Setting</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($skills as $skill)
+                                    <tr>
+                                        <td>{{ $loop->iteration }}</td>
+                                        <td>{{ $skill->name_en }}</td>
+                                        <td>{{ $skill->name_ar}}</td>
 
-                                    <td>
-                                        <div class="progress progress-xs">
-                                            @if ($skill->skills < 50)
-                                            <div class="progress-bar progress-bar-danger" style="width: {{ $skill->skills }}%"></div>
-                                            @elseif($skill->skills >= 50 && $skill->skills < 70)
-                                            <div class="progress-bar bg-warning" style="width: {{ $skill->skills }}%"></div>
-                                            @else
-                                            <div class="progress-bar bg-success" style="width: {{ $skill->skills }}%"></div>
-                                            @endif
-                                        </div>
-                                    </td>
-                                    <td>
-                                        @if ($skill->skills < 50)
-                                        <span class="badge bg-danger">%{{ $skill->skills }}</span>
-                                        @elseif($skill->skills >= 50 && $skill->skills < 70)
-                                        <span class="badge bg-warning">%{{ $skill->skills }}</span>
-                                        @else
-                                        <span class="badge bg-success">%{{ $skill->skills }}</span>
-                                        @endif
-                                    </td>
-                                    <td>
-                                        <div class="btn-group">
-                                            <a  href="{{ route('user.edit', $skill->id) }}"
-                                                class="btn btn-square btn-outline-success m-2 border-rad">
-                                                <i class="fas fa-edit"></i>
-                                            </a>
-                                            <button type="button" onclick="performDestroy('{{ $skill->id }}', this)"
-                                                class="btn btn-square btn-outline-danger m-2 border-rad">
-                                                <i class="fas fa-trash"></i>
-                                            </button>
-                                        </div>
-                                    </td>
-                                </tr>
-                                @endforeach
-                            </tbody>
+                                        <td>
+                                            <div class="progress progress-xs">
+                                                @if ($skill->skills < 50) <div class="progress-bar progress-bar-danger"
+                                                    style="width: {{ $skill->skills }}%">
+                                            </div>
+                        </div>
 
-                </table>
+                        @elseif($skill->skills >= 50 && $skill->skills < 80) <div class="progress-bar bg-warning"
+                            style="width: {{ $skill->skills }}%">
+                    </div>
+
+                    @else
+                    <div class="progress-bar bg-success" style="width: {{ $skill->skills }}%"></div>
+                    @endif
+                    </td>
+                    <td>
+                        @if ($skill->skills < 50) <span class="badge bg-danger">%{{ $skill->skills }}</span>
+                            @elseif($skill->skills >= 50 && $skill->skills < 80) <span class="badge bg-warning">%{{
+                                $skill->skills }}</span>
+                                @else
+                                <span class="badge bg-success">%{{ $skill->skills }}</span>
+                                @endif
+                    </td>
+                    <td>
+                        <div class="btn-group">
+                            <a href="{{ route('user.edit', $skill->id) }}"
+                                class="btn btn-square btn-outline-success m-2 border-rad">
+                                <i class="fas fa-edit"></i>
+                            </a>
+                            <button type="button" onclick="performDestroy('{{ $skill->id }}', this)"
+                                class="btn btn-square btn-outline-danger m-2 border-rad">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                    </td>
+                    </tr>
+                    @endforeach
+                    </tbody>
+
+                    </table>
+                </div>
             </div>
         </div>
-    </div>
-    </div>
+
     </div>
 </section>
 
@@ -148,7 +145,7 @@
 
 {{-- Create --}}
 <script>
- document.getElementById('form').addEventListener('submit', function(event) {
+    document.getElementById('form').addEventListener('submit', function(event) {
     event.preventDefault();
     let formData = new FormData();
     formData.append('name_en', document.getElementById('name_en').value);
@@ -159,6 +156,10 @@
             toastr.success(response.data.message);
             console.log(response);
             document.getElementById('form').reset();
+            setTimeout(() => {
+
+                window.location.href="{{ route('user.create') }}"
+            }, 600);
         })
         .catch(function(error) {
             toastr.error(error.response.data.message);

@@ -7,10 +7,9 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="description" content="Maha Personal cv/resume template for professional and personal website." />
-    <meta name="keywords"
-        content="creative, cv, designer,  online cv, online resume, powerful portfolio, professional, professional resume, responsive, resume, vcard " />
-    <meta name="developer" content="Md. Siful Islam">
+    <meta name="description" content="Ayuob Ferwana Personal CV/resume Website." />
+    <meta name="keywords" content="Ayuob Ferwana, Developer , PhP Laravel, vcard " />
+    <meta name="developer" content="Mr. Ayoub Ferwana ">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- FAV AND ICONS   -->
@@ -62,7 +61,6 @@
 </head>
 
 <body class="dark-vertion black-bg">
-    <!-- Start Loader -->
     <div class="section-loader">
         <div class="loader">
             <div></div>
@@ -110,17 +108,25 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="#mh-contact">{{ __('contact') }}</a>
                             </li>
+
+                            <li class="nav-item" id="light-mode">
+                                <a class="nav-link" onclick="event.preventDefault(); toggleTheme()" href="#theme">
+                                    <i class="fa fa-snowflake-o fa-spin" id="snowflake-icon" ></i>
+                                    <i class="fa fa-moon-o" id="moon-icon" style="display: none;" ></i>
+                                </a>
+                            </li>
+
                             <li class="nav-item">
                                 @php
-                                    $previousUrlFull = url()->current();
-                                    $previousUrlPath = parse_url($previousUrlFull, PHP_URL_PATH);
-                                    $previousUrlPath = substr($previousUrlPath, 3);
+                                $previousUrlFull = url()->current();
+                                $previousUrlPath = parse_url($previousUrlFull, PHP_URL_PATH);
+                                $previousUrlPath = substr($previousUrlPath, 3);
                                 @endphp
 
                                 @if (app()->isLocale('en'))
-                                    <a class="nav-link" href="/ar{{ $previousUrlPath }}">عربي</a>
+                                <a class="nav-link" href="/ar{{ $previousUrlPath }}">عربي</a>
                                 @else
-                                    <a class="nav-link" href="/en{{ $previousUrlPath }}">English</a>
+                                <a class="nav-link" href="/en{{ $previousUrlPath }}">English</a>
                                 @endif
                             </li>
                         </ul>
@@ -208,7 +214,7 @@
                                 @foreach (explode(',',$about->program) as $program )
 
                                 <li><span>{{ $program }}</span></li>
-                                    @endforeach
+                                @endforeach
                             </ul>
                         </div>
                         <a href="{{ Storage::url($about->file) }}" class="btn btn-fill wow fadeInUp"
@@ -278,22 +284,21 @@
                 </div>
                 <div class="col-sm-12 col-md-6">
                     <div class="mh-skills-inner">
-                        <div class="mh-professional-skill wow fadeInUp" data-wow-duration="0.8s"
-                            data-wow-delay="0.3s">
+                        <div class="mh-professional-skill wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.3s">
                             <h3>{{ __('Technical') }}</h3>
                             <div class="each-skills">
                                 @foreach ($skills->reverse() as $skill)
-                                    <div class="candidatos">
-                                        <div class="parcial">
-                                            <div class="info">
-                                                <div class="nome">{{ $skill['name_' . app()->getLocale()] }}</div>
-                                                <div class="percentagem-num">{{ $skill->skills }}%</div>
-                                            </div>
-                                            <div class="progressBar">
-                                                <div class="percentagem" style="width: {{ $skill->skills }}%;"></div>
-                                            </div>
+                                <div class="candidatos">
+                                    <div class="parcial">
+                                        <div class="info">
+                                            <div class="nome">{{ $skill['name_' . app()->getLocale()] }}</div>
+                                            <div class="percentagem-num">{{ $skill->skills }}%</div>
+                                        </div>
+                                        <div class="progressBar">
+                                            <div class="percentagem" style="width: {{ $skill->skills }}%;"></div>
                                         </div>
                                     </div>
+                                </div>
                                 @endforeach
                             </div>
                         </div>
@@ -304,12 +309,11 @@
                         <h3>{{ __('Professional') }}</h3>
                         <ul class="mh-professional-progress">
                             @foreach ($proSkills as $proSkill)
-                                <li>
-                                    <div class="mh-progress mh-progress-circle"
-                                        data-progress="{{ $proSkill->skills }}">
-                                    </div>
-                                    <div class="pr-skill-name">{{ $proSkill['name_' . app()->getLocale()] }}</div>
-                                </li>
+                            <li>
+                                <div class="mh-progress mh-progress-circle" data-progress="{{ $proSkill->skills }}">
+                                </div>
+                                <div class="pr-skill-name">{{ $proSkill['name_' . app()->getLocale()] }}</div>
+                            </li>
                             @endforeach
                         </ul>
                     </div>
@@ -335,14 +339,15 @@
                             <div class="mh-education-deatils">
                                 <!-- Education Institutes-->
                                 @foreach ($education as $educat)
-                                    <div class="mh-education-item dark-bg wow fadeInUp" data-wow-duration="0.8s"
-                                        data-wow-delay="0.3s">
-                                        <h4>{{ $educat['expertise_' . app()->getLocale()] }} <a
-                                                href="{{ $educat['link_' . app()->getLocale()] }}">{{ $educat['educaName_' . app()->getLocale()] }}</a>
-                                        </h4>
-                                        <div class="mh-eduyear">{{ $educat['year_' . app()->getLocale()] }}</div>
-                                        <p>{!! $educat['summernote_' . app()->getLocale()] !!} </p>
-                                    </div>
+                                <div class="mh-education-item dark-bg wow fadeInUp" data-wow-duration="0.8s"
+                                    data-wow-delay="0.3s">
+                                    <h4>{{ $educat['expertise_' . app()->getLocale()] }} <a
+                                            href="{{ $educat['link_' . app()->getLocale()] }}">{{ $educat['educaName_' .
+                                            app()->getLocale()] }}</a>
+                                    </h4>
+                                    <div class="mh-eduyear">{{ $educat['year_' . app()->getLocale()] }}</div>
+                                    <p>{!! $educat['summernote_' . app()->getLocale()] !!} </p>
+                                </div>
                                 @endforeach
                                 <!-- Education Institutes-->
                             </div>
@@ -351,7 +356,7 @@
                     <div class="col-sm-12 col-md-6">
                         <div class="mh-work">
                             <h3>{{ __('work') }}</h3>
-                            <div class="mh-experience-deatils">
+                            {{-- <div class="mh-experience-deatils">
                                 <!-- Education Institutes-->
                                 <div class="mh-work-item dark-bg wow fadeInUp" data-wow-duration="0.8s"
                                     data-wow-delay="0.4s">
@@ -363,7 +368,7 @@
                                         <li><i class="fa fa-circle"></i>PHP</li>
                                     </ul>
                                 </div>
-                            </div>
+                            </div> --}}
                         </div>
                     </div>
                 </div>
@@ -395,8 +400,8 @@
                                 data-wow-delay="0.3s"><span>{{ __('node.js') }}</span></li>
                         </ul>
                     </div>
-                    {{-- <div class="mh-project-gallery col-sm-12 wow fadeInUp" id="project-gallery" data-wow-duration="0.8s"
-                        data-wow-delay="0.5s">
+                    {{-- <div class="mh-project-gallery col-sm-12 wow fadeInUp" id="project-gallery"
+                        data-wow-duration="0.8s" data-wow-delay="0.5s">
                         <div class="portfolioContainer row">
                             <div class="grid-item col-md-4 col-sm-6 col-xs-12 user-interface">
                                 <figure>
@@ -750,18 +755,18 @@
 
 
                                 <div class="col-md-6 col-sm-12">
-                                    <input name="first_name" class="contact-name form-control" id="name"
-                                        type="text" placeholder="{{ __('FirstNa') }}">
+                                    <input name="first_name" class="contact-name form-control" id="name" type="text"
+                                        placeholder="{{ __('FirstNa') }}">
                                 </div>
 
                                 <div class="col-md-6 col-sm-12">
-                                    <input name="last_name" class="contact-email form-control" id="L_name"
-                                        type="text" placeholder="{{ __('LastNa') }}">
+                                    <input name="last_name" class="contact-email form-control" id="L_name" type="text"
+                                        placeholder="{{ __('LastNa') }}">
                                 </div>
 
                                 <div class="col-sm-12">
-                                    <input name="email" class="contact-subject form-control" id="email"
-                                        type="email" placeholder="{{ __('yourEmail') }}">
+                                    <input name="email" class="contact-subject form-control" id="email" type="email"
+                                        placeholder="{{ __('yourEmail') }}">
                                 </div>
 
                                 <div class="col-sm-12">
@@ -770,8 +775,8 @@
                                 </div>
 
                                 <div class="btn-form col-sm-12">
-                                    <button type="submit" class="btn btn-fill btn-block"
-                                        id="form-submit">{{ __('SendMes') }}</button>
+                                    <button type="submit" class="btn btn-fill btn-block" id="form-submit">{{
+                                        __('SendMes') }}</button>
                                 </div>
 
 
@@ -858,97 +863,40 @@
                     console.log(error);
                 });
         });
+
+        function toggleTheme() {
+    var body = document.getElementsByTagName("body")[0];
+    var darkMode = document.getElementById("dark-mode");
+    var lightMode = document.getElementById("light-mode");
+    var snowflakeIcon = document.getElementById("snowflake-icon");
+    var moonIcon = document.getElementById("moon-icon");
+
+    if (body.classList.contains("dark-vertion")) {
+        // Switch to white theme
+        body.classList.remove("dark-vertion");
+        body.classList.add("white-vertion");
+        darkMode.style.display = "none";
+        lightMode.style.display = "block";
+        snowflakeIcon.style.display = "none";
+        moonIcon.style.display = "inline";
+    } else {
+        // Switch to dark theme
+        body.classList.remove("white-vertion");
+        body.classList.add("dark-vertion");
+        darkMode.style.display = "block";
+        lightMode.style.display = "none";
+        snowflakeIcon.style.display = "inline";
+        moonIcon.style.display = "none";
+    }
+}
+
     </script>
+
 
     <!-- STYLE SWITCH STYLESHEET ONLY FOR DEMO -->
     <link rel="stylesheet" href="{{ asset('cv/demo/demo.css') }}">
     <script type="text/javascript" src="{{ asset('cv/demo/styleswitcher.js') }}"></script>
     <script type="text/javascript" src="{{ asset('cv/demo/demo.js') }}"></script>
-    <div class="demo-style-switch" id="switch-style">
-        <a id="toggle-switcher" class="switch-button"><i class="fa fa-snowflake-o fa-spin"></i></a>
-        <div class="switched-options">
-            <ul>
-                <li class="mh-demo-styles">
-                    <h4>Style One </h4>
-                    <ul>
-                        <li>
-                            <a href="home-one.html"> <img src="{{ asset('cv/assets/images/h1w.png') }}"
-                                    alt="" class="img-fluid"></a>
-                        </li>
-                        <li>
-                            <a href="home-one-w.html"> <img src="{{ asset('cv/assets/images/h1.png') }}"
-                                    alt="" class="img-fluid"></a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="mh-demo-styles">
-                    <h4>Style Two </h4>
-                    <ul>
-                        <li>
-                            <a href="home-two.html"> <img src="{{ asset('cv/assets/images/h2w.png') }}"
-                                    alt="" class="img-fluid"></a>
-                        </li>
-                        <li>
-                            <a href="home-two-w.html"> <img src="{{ asset('cv/assets/images/h2.png') }}"
-                                    alt="" class="img-fluid"></a>
-                        </li>
-                    </ul>
-                </li>
-
-                <li class="mh-demo-styles">
-                    <h4>RTl</h4>
-                    <ul>
-                        <li>
-                            <a href="home-rtl.html"> <img src="{{ asset('cv/assets/images/h3w.png') }}"
-                                    alt="" class="img-fluid"></a>
-                        </li>
-                        <li>
-                            <a href="home-rtl-w.html"> <img src="{{ asset('cv/assets/images/h3.png') }}"
-                                    alt="" class="img-fluid"></a>
-                        </li>
-                    </ul>
-                </li>
-            </ul>
-            <div class="config-title">
-                Colors :
-            </div>
-            <ul class="styles">
-                <li><a href="#" onclick="setActiveStyleSheet('blue'); return false;" title="Blue">
-                        <div class="blue"></div>
-                    </a>
-                </li>
-                <li><a href="#" onclick="setActiveStyleSheet('purple'); return false;" title="Purple">
-                        <div class="purple"></div>
-                    </a>
-                </li>
-                <li><a href="#" onclick="setActiveStyleSheet('blue-munsell'); return false;"
-                        title="Blue Munsell">
-                        <div class="blue-munsell"></div>
-                    </a>
-                </li>
-                <li><a href="#" onclick="setActiveStyleSheet('orange'); return false;" title="Orange">
-                        <div class="orange"></div>
-                    </a>
-                </li>
-                <li><a href="#" onclick="setActiveStyleSheet('slate'); return false;" title="Slate">
-                        <div class="slate"></div>
-                    </a>
-                </li>
-                <li><a href="#" onclick="setActiveStyleSheet('green'); return false;" title="Green">
-                        <div class="green"></div>
-                    </a>
-                </li>
-                <li><a href="#" onclick="setActiveStyleSheet('yellow'); return false;" title="Yellow">
-                        <div class="yellow"></div>
-                    </a>
-                </li>
-                <li><a href="#" onclick="setActiveStyleSheet('red'); return false;" title="Red">
-                        <div class="red"></div>
-                    </a>
-                </li>
-            </ul>
-        </div>
-    </div>
 </body>
 
 </html>

@@ -65,7 +65,10 @@ document.getElementById('form').addEventListener('submit', function(event) {
         .then(function(response) {
             toastr.success(response.data.message);
             console.log(response);
-            window.location.href = '{{ route('user.create') }}';
+            setTimeout(() => {
+
+                window.location.href = '{{ route('user.create') }}';
+            }, 600);
         })
         .catch(function(error) {
             toastr.error(error.response.data.message);

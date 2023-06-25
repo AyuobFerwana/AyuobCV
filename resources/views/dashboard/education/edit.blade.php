@@ -117,7 +117,7 @@
                document.getElementById('form');
                setTimeout(function(){
                    window.location.href='{{ route('education.create') }}';
-               }, 1000);
+               }, 900);
            })
            .catch(function(error) {
                toastr.error(error.response.data.message);
