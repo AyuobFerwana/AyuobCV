@@ -7,12 +7,18 @@ use Illuminate\Database\Eloquent\Model;
 
 class Message extends Model
 {
-   use HasFactory;
-   
-   protected $fillable = [
-      'first_name',
-      'last_name',
-      'email',
-      'message',
-   ];
+    use HasFactory;
+
+    protected $fillable = [
+        'first_name',
+        'last_name',
+        'email',
+        'message',
+    ];
+
+
+    public function contact()
+    {
+        return $this->belongsTo(Contact::class)->withTrashed();
+    }
 }

@@ -207,6 +207,16 @@
                             </a>
                         </li>
 
+                        <li class="nav-item">
+                            <a href="{{ route('contactBox') }}" class="nav-link">
+                                <i class="fas fa-comment-alt"></i>
+                                <p>
+                                    Communication
+                                </p>
+                            </a>
+                        </li>
+
+
 
                         <li class="nav-item">
                             <a href="{{ route('cv.show') }}" class="nav-link">
@@ -315,7 +325,7 @@
     <script src="{{ asset('js/sweet.js') }}"></script>
     <script src="{{ asset('js/Crud.js') }}"></script>
 
-    
+
 
     <script>
         Echo.private(`App.Models.User.{{auth()->user()->id}}`)

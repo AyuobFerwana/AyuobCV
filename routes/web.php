@@ -3,6 +3,7 @@
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\UserController;
+use App\Http\Controllers\chat\ContactController;
 use App\Http\Controllers\chat\MessageController;
 use App\Http\Controllers\ProSkillController;
 use App\Http\Controllers\Work\EducationController;
@@ -43,6 +44,11 @@ Route::middleware('auth')->prefix('dashboard')->group(function () {
     Route::resource('/education', EducationController::class);
     // about
     Route::resource('/about', AboutController::class);
+
+    Route::get('Contact-box' , [ContactController::class , 'contactBox'])->name('contactBox');
+    Route::delete('content/delete', [ContactController::class, 'destroy'])->name('content.destroy');
+
+
 });
 
 // login
